@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1027082219797",
+    "firebase_url": "https://sanmiguel-fc66b.firebaseio.com",
+    "project_id": "sanmiguel-fc66b",
+    "storage_bucket": "sanmiguel-fc66b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027082219797:android:dc45d5064d31e43177791c",
+        "android_client_info": {
+          "package_name": "com.summit.loginactivity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027082219797-a7gpg85980tbp82p9fedadqosb47oiel.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.summit.loginactivity",
+            "certificate_hash": "e038e3b6ff7ea0911efee868e2d7fb9bcc50693f"
+          }
+        },
+        {
+          "client_id": "1027082219797-uqvqnei84du6k5fmmudmqk7gaqrfk3un.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgF5bgNZga0i_dTpufXbOMMtdxG91SZlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027082219797-uqvqnei84du6k5fmmudmqk7gaqrfk3un.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

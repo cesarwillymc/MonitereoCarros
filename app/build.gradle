@@ -1,0 +1,119 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.gms.google-services'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.summit.loginactivity"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+// To inline the bytecode built with JVM target 1.8 into
+// bytecode that is being built with JVM target 1.6. (e.g. navArgs)
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+ext {
+    anko_version = '0.10.8'
+    versionAndroid = '1.0.0'
+    versionFirebase = '16.0.4'
+    retrofitVersion = "2.6.0"
+    designVersion = "28.0.0"
+    daggerVersion = "2.20"
+    glideVersion = "4.9.0"
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.1.0'
+    //android dependencias
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.cardview:cardview:$versionAndroid"
+    implementation "androidx.palette:palette:$versionAndroid"
+    //noinspection GradleDependency
+    implementation "androidx.recyclerview:recyclerview:$versionAndroid"
+    implementation "com.google.android.material:material:$versionAndroid"
+    implementation "androidx.legacy:legacy-support-v4:$versionAndroid"
+    //noinspection GradleCompatible
+    implementation "com.android.support:support-compat:$designVersion"
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+    implementation "com.android.support:design:$designVersion"
+    implementation 'com.google.code.gson:gson:2.8.5'
+    //Reactive x
+    //multidesk
+    implementation 'com.android.support:multidex:1.0.3'
+    //glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.2.2'
+    implementation 'androidx.navigation:navigation-ui:2.2.2'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+    //Anko
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    //Geofire
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    //New Android X dependency is this
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha01"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5'
+    implementation 'com.google.firebase:firebase-firestore:21.4.1'
+    //retrofit
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    //Parseo de JSON
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
+    //Google
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
+
+    //palette
+    implementation "androidx.palette:palette:1.0.0"
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    //Kodein
+    implementation "org.kodein.di:kodein-di-generic-jvm:6.3.2"
+    implementation "org.kodein.di:kodein-di-framework-android-x:6.3.2"
+    def room_version = '2.2.5'
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // For Kotlin use kapt instead of annotationProcessor
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+}
