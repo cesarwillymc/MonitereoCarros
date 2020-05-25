@@ -9,7 +9,8 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.consorciosm.sanmiguel.data.local.db.AppDB
-import com.consorciosm.sanmiguel.data.network.AuthRepository
+import com.consorciosm.sanmiguel.data.network.repository.AuthRepository
+import com.consorciosm.sanmiguel.data.network.retrofit.ApiRetrofitKey
 import com.consorciosm.sanmiguel.ui.auth.AuthViewModelFactory
 import com.google.firebase.firestore.FirebaseFirestore
 import org.kodein.di.Kodein
@@ -25,7 +26,14 @@ class MyApp : Application(), LifecycleObserver, KodeinAware {
     override val kodein= Kodein.lazy {
         import(androidXModule(this@MyApp) )
         bind() from provider { AuthViewModelFactory(instance()) }
-        bind() from singleton { AuthRepository(instance(),instance()) }
+        bind() from singleton {
+            AuthRepository(
+                instance(),
+                instance(),
+                instance()
+            )
+        }
+        bind() from singleton { ApiRetrofitKey() }
         bind() from singleton { FirebaseFirestore.getInstance() }
         bind() from singleton { AppDB(instance()) }
 

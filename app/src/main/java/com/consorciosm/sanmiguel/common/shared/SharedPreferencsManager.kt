@@ -24,7 +24,7 @@ class SharedPreferencsManager {
             editor.putInt(key,value)
             editor.apply()
         }
-        fun getSomeStringValue(key:String): String? =getSharedPreferencs().getString(key,"nulo")
+        fun getSomeStringValue(key:String): String? =getSharedPreferencs().getString(key,"")
         fun getSomeBooleanValue(key:String): Boolean? =getSharedPreferencs().getBoolean(key,false)
         fun getSomeIntValue(key:String): Int? =getSharedPreferencs().getInt(key,0)
         fun clearAllManagerShared(){

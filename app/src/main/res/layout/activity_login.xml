@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.consorciosm.sanmiguel.ui.auth.view.LoginActivity">
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+    <include
+        android:id="@+id/login_progressbar"
+        layout="@layout/progressbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -66,11 +66,11 @@
             android:layout_marginHorizontal="40dp"
             android:hint="Contraseña"
             android:layout_marginTop="10dp"
-            android:inputType="number" />
+            android:inputType="textPassword" />
 
 
         <Button
-            android:id="@+id/btn_signin"
+            android:id="@+id/al_btn_signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
@@ -79,7 +79,16 @@
             android:text="Ingresar"
             android:textColor="#fff" />
 
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No tienes una cuenta? Registrate"
+            android:id="@+id/al_txt_register"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_gravity="end"
+            android:gravity="end"/>
 
 
 

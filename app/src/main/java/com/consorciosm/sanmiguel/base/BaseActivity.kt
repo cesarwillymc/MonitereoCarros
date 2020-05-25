@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -16,15 +17,10 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.kodein
-import org.kodein.di.android.x.kodein
+import org.jetbrains.anko.contentView
 
-abstract  class BaseActivity : AppCompatActivity(), KodeinAware{
-    override val kodein: Kodein by kodein()
+abstract  class BaseActivity : AppCompatActivity(){
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -57,10 +53,14 @@ abstract  class BaseActivity : AppCompatActivity(), KodeinAware{
         alertDialog.show()
     }
     fun snakBar(mensaje: String){
-        Snackbar.make(this.currentFocus!!,mensaje, Snackbar.LENGTH_LONG).also { snackbar ->
-            snackbar.setAction("Ok"){
-                snackbar.dismiss()
-            }.show()
+        try{
+            Snackbar.make(contentView!!,mensaje, Snackbar.LENGTH_LONG).also { snackbar ->
+                snackbar.setAction("Ok"){
+                    snackbar.dismiss()
+                }.show()
+            }
+        }catch (e:Exception){
+            Log.e("error","snakbar")
         }
     }
     fun toast(mensaje:String){

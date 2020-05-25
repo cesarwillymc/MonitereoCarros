@@ -99,7 +99,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     //Google
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
-
+    //retrofit
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    //Parseo de JSON
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"
     //palette
     implementation "androidx.palette:palette:1.0.0"
 
