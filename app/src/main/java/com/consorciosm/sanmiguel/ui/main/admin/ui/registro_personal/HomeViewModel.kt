@@ -1,4 +1,4 @@
-package com.consorciosm.sanmiguel.ui.main.ui.home
+package com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

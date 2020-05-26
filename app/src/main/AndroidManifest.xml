@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ui.SphashScreen" >
+        <activity android:name=".ui.main.supervisor.SupervisorActivity"></activity>
+        <activity android:name=".ui.SphashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +20,7 @@
         </activity>
         <activity android:name=".ui.auth.view.RegisterActivity" />
         <activity android:name=".ui.auth.view.LoginActivity" />
-        <activity android:name=".ui.main.InicioMain">
-
-        </activity>
+        <activity android:name=".ui.main.admin.InicioMain"></activity>
     </application>
 
 </manifest>

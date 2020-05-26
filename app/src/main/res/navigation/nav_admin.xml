@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_registro">
+
+    <fragment
+        android:id="@+id/nav_registro"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal.RegistroPersonalFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_registro_personal"/>
+
+    <fragment
+        android:id="@+id/nav_registro_vehiculo"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_carros.RegistroCarrosFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_registro_carros" />
+
+    <fragment
+        android:id="@+id/nav_partes"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.partes.PartesFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_partes" />
+    <fragment
+        android:id="@+id/nav_personal"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.MonitoreoPersonal"
+        android:label="fragment_monitoreo_personal"
+        tools:layout="@layout/fragment_monitoreo_personal" />
+    <fragment
+        android:id="@+id/nav_permisos"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.ordenes.OrdernesProgramadas"
+        android:label="fragment_ordernes_programadas"
+        tools:layout="@layout/fragment_ordernes_programadas" />
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.perfil.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

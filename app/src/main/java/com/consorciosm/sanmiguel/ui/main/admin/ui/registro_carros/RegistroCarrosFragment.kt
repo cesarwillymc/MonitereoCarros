@@ -1,4 +1,4 @@
-package com.consorciosm.sanmiguel.ui.main.ui.home
+package com.consorciosm.sanmiguel.ui.main.admin.ui.registro_carros
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.consorciosm.sanmiguel.R
 
-class HomeFragment : Fragment() {
+class RegistroCarrosFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var galleryViewModel: GalleryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        galleryViewModel =
+            ViewModelProviders.of(this).get(GalleryViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_registro_carros, container, false)
+        val textView: TextView = root.findViewById(R.id.text_gallery)
+        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

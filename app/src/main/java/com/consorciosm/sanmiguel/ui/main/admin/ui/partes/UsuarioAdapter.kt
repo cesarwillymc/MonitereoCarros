@@ -13,7 +13,7 @@ class UsuarioAdapter(val usuarioListener: UsuarioListener):RecyclerView.Adapter<
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(
-        R.layout.fragment_gallery,parent,false))
+        R.layout.fragment_registro_carros,parent,false))
 
     override fun getItemCount() = listUsuarios.size
 

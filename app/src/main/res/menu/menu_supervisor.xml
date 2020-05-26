@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_registro"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Registro nuevo usuario" />
+        <item
+            android:id="@+id/nav_registro_vehiculo"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Registro nuevo vehiculo" />
+        <item
+            android:id="@+id/nav_partes"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Partes diarios" />
+        <item
+            android:id="@+id/nav_permisos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Ordenes Programadas" />
+        <item
+            android:id="@+id/nav_personal"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Monitoreo Personal" />
+        <item
+            android:id="@+id/nav_validacion"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Validacion registros diarios" />
+
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Mi perfil" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Cerrar cesion" />
+
+    </group>
+
+</menu>

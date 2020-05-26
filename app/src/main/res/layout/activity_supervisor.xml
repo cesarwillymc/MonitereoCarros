@@ -8,6 +8,15 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_inicio_main"
+        app:menu="@menu/menu_supervisor" />
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -30,16 +39,7 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:showIn="@layout/app_bar_inicio_main"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/nav_admin" />
+            app:navGraph="@navigation/nav_supervisor" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_inicio_main"
-        app:menu="@menu/menu_admin" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
