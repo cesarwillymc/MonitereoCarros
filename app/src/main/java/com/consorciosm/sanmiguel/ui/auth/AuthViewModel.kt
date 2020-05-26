@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 class AuthViewModel(private val repo: AuthRepository) :ViewModel(){
 
     val getLoggetUser = repo.getUser()
+    fun deleteUser()= repo.deleteUser()
 
     fun SignIn(email: String,pass: String): LiveData<Resource<Unit>> = liveData(Dispatchers.IO){
         emit(Resource.Loading())

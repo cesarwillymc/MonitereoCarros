@@ -11,9 +11,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseActivity
+import com.consorciosm.sanmiguel.common.constans.Constants.ROLE_ADMINISTRADOR
+import com.consorciosm.sanmiguel.common.constans.Constants.ROLE_SUPERVISOR
+import com.consorciosm.sanmiguel.common.shared.SharedPreferencsManager.Companion.clearAllManagerShared
 import com.consorciosm.sanmiguel.common.utils.Resource
 import com.consorciosm.sanmiguel.ui.auth.AuthViewModel
 import com.consorciosm.sanmiguel.ui.auth.AuthViewModelFactory
+import com.consorciosm.sanmiguel.ui.main.admin.InicioMain
+import com.consorciosm.sanmiguel.ui.main.supervisor.SupervisorActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -40,11 +45,41 @@ class LoginActivity : BaseActivity(), KodeinAware {
         }
         viewModel.getLoggetUser.observe(this, Observer {
             if (it!=null){
-                Log.e("datosuser",it.toString())
-                snakBar("Successubl")
+                if(it.accountActive){
+                    snakBar("Te logeaste correctamente")
+                    when(it.role){
+                        ROLE_SUPERVISOR-> navMainSupervisor()
+                        ROLE_ADMINISTRADOR->navMainAdmin()
+                        else->{
+                            snakBar("Contactate con un supervisor")
+                            logout()
+                        }
+                    }
+                }else{
+                    snakBar("No tienes permisos para seguir, contactate con un supervisor")
+                    logout()
+
+                }
+
             }
         })
     }
+    private fun logout(){
+        viewModel.deleteUser()
+        clearAllManagerShared()
+    }
+    private fun navMainAdmin() {
+        val intent = Intent(this, InicioMain::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun navMainSupervisor() {
+        val intent = Intent(this, SupervisorActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     private fun userLogin(email:String,pass:String) {
         if (email.isEmpty()){
             al_edtxt_gmail.error="Tu correo esta vacio"
@@ -65,7 +100,6 @@ class LoginActivity : BaseActivity(), KodeinAware {
                     showProgressBar()
                 }
                 is Resource.Success->{
-                    snakBar("Tu logeo fue exitoso")
                     hideProgressBar()
                 }
                 is Resource.Failure->{

@@ -10,7 +10,7 @@ data class Usuario(
     var _id:String,
     var registerDate:String,
     var role:String,
-    var accountActive:String,
+    var accountActive:Boolean,
     var dni:String,
     var paterno:String,
     var nombres:String,

@@ -27,4 +27,7 @@ object Constants {
     //DD Room
     const val NAME_TABLE_USER="user"
     const val NAME_DATABASE ="ConsorcioSanMiguel"
+    //Roles
+    const val ROLE_SUPERVISOR ="supervisor"
+    const val ROLE_ADMINISTRADOR ="administrador"
 }

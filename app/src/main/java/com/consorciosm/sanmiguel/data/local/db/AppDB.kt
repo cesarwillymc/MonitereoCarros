@@ -8,7 +8,7 @@ import com.consorciosm.sanmiguel.common.constans.Constants
 import com.consorciosm.sanmiguel.data.local.dao.UsuarioDao
 import com.consorciosm.sanmiguel.data.model.Usuario
 
-@Database(entities = [Usuario::class],version = 1)
+@Database(entities = [Usuario::class],version = 3)
 abstract class AppDB:RoomDatabase() {
     abstract fun usuarioDao(): UsuarioDao
     companion object{

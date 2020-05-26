@@ -23,7 +23,7 @@ class AuthRepository(
     private val api:ApiRetrofitKey,
     private val firebase:FirebaseFirestore
 ):SafeApiRequest() {
-
+    fun deleteUser()= db.usuarioDao().deleteUsuario()
     suspend fun saveUser(perfilUsuario: Usuario)= db.usuarioDao().insertUsuario(perfilUsuario)
     fun getUser()=db.usuarioDao().selectUsuario()
     suspend  fun SignUpAuth(model: requestSignUp): ResponseGeneral {

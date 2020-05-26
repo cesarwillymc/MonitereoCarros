@@ -22,7 +22,7 @@ interface ApiRetrofitKey {
     suspend fun loginUser(
         @Body request: requestSignIn
     ): Response<requestSignIn>
-    @GET("customer/information")
+    @GET("admin/informacion")
     suspend fun getUserInfo(): Response<Usuario>
 
     companion object{
