@@ -10,8 +10,10 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.consorciosm.sanmiguel.data.local.db.AppDB
 import com.consorciosm.sanmiguel.data.network.repository.AuthRepository
+import com.consorciosm.sanmiguel.data.network.repository.MainRepository
 import com.consorciosm.sanmiguel.data.network.retrofit.ApiRetrofitKey
 import com.consorciosm.sanmiguel.ui.auth.AuthViewModelFactory
+import com.consorciosm.sanmiguel.ui.main.MainViewModelFactory
 import com.google.firebase.firestore.FirebaseFirestore
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -28,6 +30,14 @@ class MyApp : Application(), LifecycleObserver, KodeinAware {
         bind() from provider { AuthViewModelFactory(instance()) }
         bind() from singleton {
             AuthRepository(
+                instance(),
+                instance(),
+                instance()
+            )
+        }
+        bind() from provider { MainViewModelFactory(instance()) }
+        bind() from singleton {
+            MainRepository(
                 instance(),
                 instance(),
                 instance()

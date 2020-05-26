@@ -6,8 +6,15 @@ import com.consorciosm.sanmiguel.common.constans.Constants
 
 @Entity(tableName = Constants.NAME_TABLE_USER)
 data class Usuario(
-    @PrimaryKey
-    var id:Int=0,
-    var emailAddress:String,
-    var mobilePhone:String
+    @PrimaryKey(autoGenerate = false)
+    var _id:String,
+    var registerDate:String,
+    var role:String,
+    var accountActive:String,
+    var dni:String,
+    var paterno:String,
+    var nombres:String,
+    var materno:String,
+    var telefono:String,
+    var direccion:String
 )

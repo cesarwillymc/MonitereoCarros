@@ -40,6 +40,7 @@ class LoginActivity : BaseActivity(), KodeinAware {
         }
         viewModel.getLoggetUser.observe(this, Observer {
             if (it!=null){
+                Log.e("datosuser",it.toString())
                 snakBar("Successubl")
             }
         })
