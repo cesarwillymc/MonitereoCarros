@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navmain"
-    app:startDestination="@+id/nav_registro">
+    android:id="@+id/nav_supervisor"
+    app:startDestination="@id/nav_partes">
 
     <fragment
         android:id="@+id/nav_registro"
@@ -20,12 +20,10 @@
     <fragment
         android:id="@+id/nav_partes"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.partes.PartesFragment"
-        android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_partes" />
     <fragment
         android:id="@+id/nav_personal"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.MonitoreoPersonal"
-        android:label="fragment_monitoreo_personal"
         tools:layout="@layout/fragment_monitoreo_personal" />
     <fragment
         android:id="@+id/nav_permisos"

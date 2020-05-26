@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseActivity
 import com.consorciosm.sanmiguel.common.constans.Constants
@@ -38,19 +40,8 @@ class SphashScreen : BaseActivity(),KodeinAware {
             }
 
             override fun onAnimationEnd(p0: Animation?) {
-                val dato=viewModel.getLoggetUser.value
-               if (dato!=null){
-                   when(dato.role){
-                       Constants.ROLE_SUPERVISOR -> navMainSupervisor()
-                       Constants.ROLE_ADMINISTRADOR ->navMainAdmin()
-                       else->{
-                           snakBar("Contactate con un supervisor")
-                           logout()
-                       }
-                   }
-               }else{
-                   navigationToPrincipal()
-               }
+                funcionObjetc()
+
             }
 
             override fun onAnimationStart(p0: Animation?) {
@@ -58,6 +49,24 @@ class SphashScreen : BaseActivity(),KodeinAware {
 
         })
     }
+
+    private fun funcionObjetc() {
+        viewModel.getLoggetUser.observe(this, Observer {
+            if (it!=null){
+                when(it.role){
+                    Constants.ROLE_SUPERVISOR -> navMainSupervisor()
+                    Constants.ROLE_ADMINISTRADOR ->navMainAdmin()
+                    else->{
+                        snakBar("Contactate con un supervisor")
+                        logout()
+                    }
+                }
+            }else{
+                navigationToPrincipal()
+            }
+        })
+    }
+
     private fun logout(){
         viewModel.deleteUser()
         SharedPreferencsManager.clearAllManagerShared()

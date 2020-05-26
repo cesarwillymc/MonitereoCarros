@@ -45,6 +45,7 @@ class LoginActivity : BaseActivity(), KodeinAware {
         }
         viewModel.getLoggetUser.observe(this, Observer {
             if (it!=null){
+                Log.e("datos",it.toString())
                 if(it.accountActive){
                     snakBar("Te logeaste correctamente")
                     when(it.role){

@@ -2,38 +2,38 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_registro">
+    android:id="@+id/nav_admin"
+    app:startDestination="@+id/nav_registro_a">
 
     <fragment
-        android:id="@+id/nav_registro"
+        android:id="@+id/nav_registro_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal.RegistroPersonalFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_registro_personal"/>
 
     <fragment
-        android:id="@+id/nav_registro_vehiculo"
+        android:id="@+id/nav_registro_vehiculo_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_carros.RegistroCarrosFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_registro_carros" />
 
     <fragment
-        android:id="@+id/nav_partes"
+        android:id="@+id/nav_partes_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.partes.PartesFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_partes" />
     <fragment
-        android:id="@+id/nav_personal"
+        android:id="@+id/nav_personal_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.MonitoreoPersonal"
         android:label="fragment_monitoreo_personal"
         tools:layout="@layout/fragment_monitoreo_personal" />
     <fragment
-        android:id="@+id/nav_permisos"
+        android:id="@+id/nav_permisos_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.ordenes.OrdernesProgramadas"
         android:label="fragment_ordernes_programadas"
         tools:layout="@layout/fragment_ordernes_programadas" />
     <fragment
-        android:id="@+id/nav_perfil"
+        android:id="@+id/nav_perfil_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.perfil.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />

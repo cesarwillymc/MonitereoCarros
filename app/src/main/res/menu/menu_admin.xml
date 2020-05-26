@@ -5,36 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_registro"
+            android:id="@+id/nav_registro_a"
             android:icon="@drawable/ic_menu_camera"
             android:title="Registro nuevo usuario" />
         <item
-            android:id="@+id/nav_registro_vehiculo"
+            android:id="@+id/nav_registro_vehiculo_a"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Registro nuevo vehiculo" />
         <item
-            android:id="@+id/nav_partes"
+            android:id="@+id/nav_partes_a"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Partes diarios" />
         <item
-            android:id="@+id/nav_permisos"
+            android:id="@+id/nav_permisos_a"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Ordenes Programadas" />
         <item
-            android:id="@+id/nav_personal"
+            android:id="@+id/nav_personal_a"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Monitoreo Personal" />
-
-    </group>
-    <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_perfil"
+            android:id="@+id/nav_perfil_a"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Mi perfil" />
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Cerrar cesion" />
 
     </group>
 
