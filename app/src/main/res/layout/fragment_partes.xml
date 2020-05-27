@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <TextView
-                android:id="@+id/lbl_fecha_fp"
+                android:id="@+id/lbl_fecha_fparte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -56,13 +56,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Parte Diario de Vehiculo"
+                android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_conductor_fp"
                 android:layout_marginHorizontal="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_fecha_fp"
+                app:layout_constraintTop_toBottomOf="@+id/lbl_fecha_fparte"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,11 +101,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Empresa Proveedora:" />
+
                         <TextView
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
+                            android:id="@+id/lbl_empresaprov_fparte"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
                             android:text="Fercan Contratistas" />
 
                     </LinearLayout>
@@ -124,11 +127,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Nombres y Apellidos:" />
+
                         <TextView
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
+                            android:id="@+id/lbl_nombres_fparte"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
                             android:text="Edwin. B Torres Gutierrez" />
 
                     </LinearLayout>
@@ -150,11 +155,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Licencia de Conducir:" />
+
                         <TextView
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
+                            android:id="@+id/lbl_licencia_fparte"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
                             android:text="U-01539661" />
 
                     </LinearLayout>
@@ -176,11 +183,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Hora de Salida Cochera:" />
+
                         <TextView
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
+                            android:id="@+id/lbl_horasalida_fparte"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
                             android:text="08:00 AM" />
 
                     </LinearLayout>
@@ -202,11 +211,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Hora Ingreso a Cochera:" />
+
                         <TextView
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
+                            android:id="@+id/lbl_horaingreso_fparte"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
                             android:text="05:00 PM" />
 
                     </LinearLayout>
@@ -257,6 +268,7 @@
                             android:text="Marca:" />
 
                         <TextView
+                            android:id="@+id/lbl_marca_vehiculo_fparte"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -283,6 +295,7 @@
                             android:text="Modelo:" />
 
                         <TextView
+                            android:id="@+id/lbl_modelo_vehiculo_fparte"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -310,6 +323,7 @@
                             android:text="Placa:" />
 
                         <TextView
+                            android:id="@+id/lbl_placa_vehiculo_fparte"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -378,9 +392,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_tarjeta_proiedad_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
 
 
                         </LinearLayout>
@@ -400,9 +415,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_soat_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
                         </LinearLayout>
 
 
@@ -434,9 +450,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_triangulos_seguridad_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
 
 
                         </LinearLayout>
@@ -455,9 +472,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_botiquin_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
                         </LinearLayout>
 
 
@@ -489,9 +507,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_nivel_aceite_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
 
 
                         </LinearLayout>
@@ -501,18 +520,20 @@
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
+
                             <TextView
-                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_marginLeft="5dp"
                                 android:layout_weight="1"
-                                android:text="Botiquin"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:gravity="center"
+                                android:text="Nivel de Agua" />
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_nivel_agua_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
                         </LinearLayout>
 
 
@@ -543,9 +564,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_nivel_liquido_frenos_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
 
 
                         </LinearLayout>
@@ -564,9 +586,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_nivel_liquido_hidrolina_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
                         </LinearLayout>
 
 
@@ -597,9 +620,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_espejos_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
 
 
                         </LinearLayout>
@@ -618,9 +642,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_gata_palanca_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
                         </LinearLayout>
 
 
@@ -651,9 +676,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_extintor_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
 
 
                         </LinearLayout>
@@ -672,9 +698,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_luces_exteriores_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
                         </LinearLayout>
 
 
@@ -705,9 +732,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_nivel_refrigerante_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
 
 
                         </LinearLayout>
@@ -726,9 +754,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_alarma_retroceso_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
                         </LinearLayout>
 
 
@@ -759,9 +788,10 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
-                                android:layout_weight="5"
+                                android:id="@+id/cb_herramientas_fparte"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="match_parent"
+                                android:layout_weight="5" />
 
 
                         </LinearLayout>
@@ -820,7 +850,7 @@
                     <TextView
                         android:textStyle="italic"
                         android:layout_marginHorizontal="10dp"
-                        android:id="@+id/textView25"
+                        android:id="@+id/lbl_actividad_fparte"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/lorem_ipsum"
@@ -836,11 +866,11 @@
                         android:layout_marginTop="5dp"
                         android:text="Hora y Kilometraje:"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textView25" />
+                        app:layout_constraintTop_toBottomOf="@id/lbl_actividad_fparte" />
 
                     <TextView
 
-                        android:id="@+id/textView28"
+                        android:id="@+id/lbl_hora_inicio_fparte"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/textView27"
@@ -872,22 +902,22 @@
 
                     <TextView
 
+                        android:id="@+id/lbl_kilometraje_inicio_fparte"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/textView27"
-                        app:layout_constraintStart_toEndOf="@id/textView28"
                         android:layout_marginStart="10dp"
                         android:text="1966 KM "
+                        app:layout_constraintStart_toEndOf="@id/lbl_hora_inicio_fparte"
 
-                        />
+                        app:layout_constraintTop_toBottomOf="@id/textView27" />
 
 
                     <TextView
 
-                        android:id="@+id/textView29"
+                        android:id="@+id/lbl_hora_final_fparte"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/textView28"
+                        app:layout_constraintTop_toBottomOf="@id/lbl_hora_inicio_fparte"
                         app:layout_constraintStart_toEndOf="@+id/textView31"
                         android:layout_marginStart="10dp"
                         android:text="05:30 PM "
@@ -897,14 +927,14 @@
 
                     <TextView
 
+                        android:id="@+id/lbl_kilometraje_final_fparte"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/textView28"
-                        app:layout_constraintStart_toEndOf="@id/textView29"
                         android:layout_marginStart="10dp"
                         android:text="1991 KM "
+                        app:layout_constraintStart_toEndOf="@id/lbl_hora_final_fparte"
 
-                        />
+                        app:layout_constraintTop_toBottomOf="@id/lbl_hora_inicio_fparte" />
 
 
                     <TextView
@@ -932,7 +962,7 @@
                         android:textColor="#000"
                         android:layout_marginTop="5dp"
                         android:layout_marginStart="5dp"
-                        android:id="@+id/TextView34"
+                        android:id="@+id/lbl_kilometraje_abastecimiento_fparte"
                         android:text="1980 KM"
                         app:layout_constraintTop_toBottomOf="@+id/TextView32"
                         app:layout_constraintStart_toEndOf="@+id/TextView33"
@@ -951,14 +981,15 @@
 
                     <TextView
 
-                        android:textColor="#000"
+                        android:id="@+id/lbl_galones_abastecimiento_fparte"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
-                        app:layout_constraintTop_toBottomOf="@+id/TextView33"
-                        app:layout_constraintStart_toEndOf="@+id/TextView35"
                         android:text="10 Galones"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textColor="#000"
+                        app:layout_constraintStart_toEndOf="@+id/TextView35"
+                        app:layout_constraintTop_toBottomOf="@+id/TextView33" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
