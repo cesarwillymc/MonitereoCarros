@@ -391,15 +391,7 @@
             android:layout_weight="1"
             android:text="FECHAS DE SALIDA Y RETORNO" />
 
-        <TextView
-            android:background="#000"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp"
-            android:text="HORA"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+
         <TextView
             android:background="#000"
             android:textColor="#fff"
@@ -441,21 +433,12 @@
             android:layout_weight="1"
             android:background="@drawable/border_label"
             android:gravity="center"
-            android:hint="Fecha de Salida..."
+            android:hint="Fecha  y Hora de Salida..."
             android:textColor="#000"
             android:textSize="12sp" />
 
 
-        <EditText
-            android:id="@+id/et_hora_salda_fps"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/border_label"
-            android:gravity="center"
-            android:hint="Hora..."
-            android:textColor="#000"
-            android:textSize="12sp" />
+
 
         <EditText
             android:id="@+id/et_origen_salida_fps"
@@ -499,21 +482,11 @@
             android:layout_weight="1"
             android:background="@drawable/border_label"
             android:gravity="center"
-            android:hint="Fecha de Retorno..."
+            android:hint="Fecha  y Hora de Retorno..."
             android:textColor="#000"
             android:textSize="12sp" />
 
 
-        <EditText
-            android:id="@+id/et_hora_retorno_fps"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/border_label"
-            android:gravity="center"
-            android:hint="Hora..."
-            android:textColor="#000"
-            android:textSize="12sp" />
 
         <EditText
             android:id="@+id/et_origen_retorno_fps"
