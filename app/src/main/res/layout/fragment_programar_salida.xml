@@ -210,6 +210,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/et_fecha_fps"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -239,6 +240,7 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/et_nro_horas_fps"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -254,6 +256,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_autorizado_por_fps"
         android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -263,21 +266,155 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TextView
-            android:gravity="center"
+            android:background="@drawable/border_label"
+            android:textColor="#000"
             android:id="@+id/textView25"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Autorizado Por:" />
 
         <Spinner
+
+            android:id="@+id/spn_autorizado_por_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/lbl_cargo_autorizado_por_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Cargo..."
+            android:textColor="#000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_autorizado_a_fps"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/ll_autorizado_por_fps">
+
+        <TextView
+            android:background="@drawable/border_label"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Autorizado A:" />
+
+        <Spinner
+            android:id="@+id/spn_autorizado_a_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/lbl_cargo_autorizado_a_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Cargo..."
+            android:textColor="#000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_conductor_autorizado_fps"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/ll_autorizado_a_fps">
+
+        <TextView
+            android:background="@drawable/border_label"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Conductor Autorizado:" />
+
+        <Spinner
+            android:id="@+id/spn_conductor_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/lbl_placa_autorizado_por_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Placa..."
+            android:textColor="#000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_fechas_footer_fps"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/ll_conductor_autorizado_fps">
+
+        <TextView
+            android:background="#000"
+            android:textColor="#fff"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="FECHAS DE SALIDA Y RETORNO" />
+
+        <TextView
+            android:background="#000"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:text="HORA"
             android:gravity="center"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+        <TextView
+            android:background="#000"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="ORIGEN" />
 
         <TextView
-            android:hint="Cargo..."
+            android:background="#000"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            android:text="DESTINO"
             android:gravity="center"
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -285,5 +422,175 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/ll_fechas_salida_datos_fps"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/ll_fechas_footer_fps">
+
+
+        <EditText
+            android:id="@+id/et_fecha_salida_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Fecha de Salida..."
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+
+        <EditText
+            android:id="@+id/et_hora_salda_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Hora..."
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/et_origen_salida_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Origen..."
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/et_destino_salida_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Destino..."
+            android:textColor="#000"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_fechas_retorno_datos_fps"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/ll_fechas_salida_datos_fps">
+
+
+        <EditText
+            android:id="@+id/et_fecha_retorno_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Fecha de Retorno..."
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+
+        <EditText
+            android:id="@+id/et_hora_retorno_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Hora..."
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/et_origen_retorno_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Origen..."
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/et_destino_retorno_fps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/border_label"
+            android:gravity="center"
+            android:hint="Destino..."
+            android:textColor="#000"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:background="#000"
+        android:textColor="#fff"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Ocupantes en el Vehiculo:"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/ll_fechas_retorno_datos_fps" />
+
+    <EditText
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/et_ocupantes_vehiculo_fps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombres de los ocupantes.."
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:background="#000"
+        android:textColor="#fff"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OBSERVACIONES:"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/et_ocupantes_vehiculo_fps" />
+
+    <EditText
+
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/et_observaciones_fps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <Button
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/btn_programar_salida_fps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Programar"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toBottomOf="@+id/et_observaciones_fps" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
