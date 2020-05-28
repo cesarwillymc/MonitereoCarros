@@ -50,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fragment_partes"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintTop_toBottomOf="@id/editText"
         android:layout_width="match_parent"

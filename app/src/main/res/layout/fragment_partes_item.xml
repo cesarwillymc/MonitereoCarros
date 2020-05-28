@@ -39,6 +39,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/lbl_conductor_item_parte" />
 
             <TextView
+
                 android:textColor="#fff"
                 android:background="#000"
                 android:padding="5dp"
