@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.admin.ui.registro_personal.RegistroPersonalFragment">
 
+    <include
+        layout="@layout/progressbar_login"
+        android:id="@+id/login_progressbar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -30,11 +38,13 @@
 
     <EditText
         android:id="@+id/et_dni_frp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="dni..."
-        android:inputType="textPersonName"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -48,11 +58,13 @@
 
     <EditText
         android:id="@+id/et_nombre_frp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="nombres..."
+        android:imeOptions="actionNext"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -66,11 +78,13 @@
 
     <EditText
         android:id="@+id/et_apellidos_frp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="apellidos..."
         android:inputType="textPersonName"
+        android:imeOptions="actionNext"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -84,11 +98,13 @@
 
     <EditText
         android:id="@+id/et_direccion_frp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="direccion..."
         android:inputType="textPersonName"
+        android:imeOptions="actionNext"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -102,15 +118,18 @@
 
     <EditText
         android:id="@+id/et_telefono_frp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="telefono..."
-        android:inputType="textPersonName"
+        android:inputType="number"
+        android:imeOptions="actionNext"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,12 +138,17 @@
         app:layout_constraintTop_toBottomOf="@+id/et_telefono_frp" />
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/et_pass_frp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="contraseña..."
-        android:inputType="textPersonName"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -138,21 +162,25 @@
 
     <EditText
         android:id="@+id/et_firstnum_frp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Primer número.."
-        android:inputType="textPersonName"
+        android:inputType="number"
+        android:imeOptions="actionNext"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
         android:id="@+id/et_secondnum_frp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Segundo nùmero"
-        android:inputType="textPersonName"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:imeOptions="actionGo"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/et_firstnum_frp" />
 

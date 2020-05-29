@@ -78,6 +78,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
     //Anko
     implementation "org.jetbrains.anko:anko:$anko_version"
@@ -120,4 +121,5 @@ dependencies {
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
+    implementation 'com.karumi:dexter:6.1.2'
 }

@@ -6,16 +6,16 @@
         <item
             android:id="@+id/nav_registro"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Registro nuevo usuario" />
+            android:title="Usuarios" />
         <item
             android:id="@+id/nav_registro_vehiculo"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Registro nuevo vehiculo" />
+            android:title="Vehiculos" />
         <item
             android:id="@+id/nav_partes"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Partes diarios" />
-        <!--item
+        <item
             android:id="@+id/nav_permisos"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Ordenes Programadas" />
@@ -30,7 +30,7 @@
         <item
             android:id="@+id/nav_perfil"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Mi perfil" /-->
+            android:title="Mi perfil" />
 
     </group>
 

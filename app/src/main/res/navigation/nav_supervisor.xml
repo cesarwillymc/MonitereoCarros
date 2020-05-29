@@ -6,16 +6,34 @@
     app:startDestination="@id/nav_partes">
 
     <fragment
-        android:id="@+id/nav_registro"
+        android:id="@+id/registro_carro"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal.RegistroPersonalFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_registro_personal"/>
+        tools:layout="@layout/fragment_registro_personal">
+        <argument
+            android:name="new"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="sad" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_registro_vehiculo"
+        android:id="@+id/registro_vehiculo"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_carros.RegistroCarrosFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_registro_carros" />
+        tools:layout="@layout/fragment_registro_carros" >
+        <argument
+            android:name="new"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="sad" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_partes"
@@ -40,4 +58,22 @@
         android:name="com.consorciosm.sanmiguel.ui.main.supervisor.notificaciones.NotificacionesFragment"
         android:label="fragment_notificaciones"
         tools:layout="@layout/fragment_notificaciones" />
+    <fragment
+        android:id="@+id/nav_registro"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal.Conductores"
+        android:label="Conductores" >
+        <action
+            android:id="@+id/action_nav_registro_to_registro_carro"
+            app:destination="@id/registro_carro"
+            app:popUpTo="@id/nav_registro" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_registro_vehiculo"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_carros.carrosFragment"
+        android:label="carrosFragment" >
+        <action
+            android:id="@+id/action_nav_registro_vehiculo_to_registro_vehiculo"
+            app:destination="@id/registro_vehiculo"
+            app:popUpTo="@id/nav_registro" />
+    </fragment>
 </navigation>
