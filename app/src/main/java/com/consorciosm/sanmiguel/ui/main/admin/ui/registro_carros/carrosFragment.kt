@@ -21,7 +21,7 @@ import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
 
-class carrosFragment : BaseFragment(),KodeinAware ,CarrosListener{
+class carrosFragment : BaseFragment(),KodeinAware ,CarrosListener,SpinnerListener{
     var value:Boolean?=null
     override val kodein: Kodein by kodein()
     private lateinit var viewModel: ViewModelMain
@@ -34,32 +34,14 @@ class carrosFragment : BaseFragment(),KodeinAware ,CarrosListener{
         viewModel= requireActivity().run {
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
-        val colors = arrayOf("all","Sin Conductores","Con Conductores")
-        val datos = ArrayAdapter(
-            requireContext(), // Context
-            android.R.layout.simple_spinner_item, // Layout
-            colors // Array
+        val colors = listOf("all","Sin Conductores","Con Conductores")
+
+        val datos = SpinnerAdapter(this,
+            requireContext()
         )
-        datos.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        datos.updateData(colors)
         spinner.adapter = datos
-        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
-                value = when (position) {
-                    0 -> {
-                        null
-                    }
-                    1 -> {
-                        false
-                    }
-                    else -> true
-                }
-                getCarroslIs()
 
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>){
-            }
-        }
         carrosAdapter = CarrosAdapter(this)
         fcarros_rv.apply {
             //, LinearLayoutManager.VERTICAL,false
@@ -101,6 +83,19 @@ class carrosFragment : BaseFragment(),KodeinAware ,CarrosListener{
     override fun listener(carrosList: CarrosList, position: Int) {
         val nav=carrosFragmentDirections.actionNavRegistroVehiculoToRegistroVehiculo(false,carrosList._id)
         findNavController().navigate(nav)
+    }
+
+    override fun onCategoriaListener(dato: String, position: Int) {
+        value = when (position) {
+            0 -> {
+                null
+            }
+            1 -> {
+                false
+            }
+            else -> true
+        }
+        getCarroslIs()
     }
 
 

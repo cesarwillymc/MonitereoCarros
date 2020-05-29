@@ -27,7 +27,7 @@ interface ApiRetrofitKey {
     suspend fun createPersonal(
         @Body usuario: PersonalData
     ): Response<ResponseGeneral>
-    @POST("admin/crearUser/{id}")
+    @PUT("admin/updateUser/{id}")
     suspend fun updatePersonal(
         @Body usuario: PersonalData,
         @Path("id") id :String
@@ -50,7 +50,7 @@ interface ApiRetrofitKey {
         @Part("service") name: RequestBody,
         @Query("key") key:String?
     ): Response<ResponseGeneral>
-    @POST("admin/registro/{id}")
+    @PUT("admin/registro/{id}")
     suspend fun updateVehiculo(
         @Body vehiculo: VehiculoCreate,
         @Path("id") id:String
