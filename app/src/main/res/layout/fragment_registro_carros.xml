@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.admin.ui.registro_carros.RegistroCarrosFragment">
 
-
+    <include
+        layout="@layout/progressbar_login"
+        android:id="@+id/login_progressbar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -161,8 +168,25 @@
             <EditText
                 android:id="@+id/et_sede"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="Kilometros:"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <EditText
+                android:id="@+id/et_kilometros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Nivel de Conbustible:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_Conbustible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:text="Fotografia del Vehículo:"
                 android:layout_width="match_parent"

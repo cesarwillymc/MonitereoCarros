@@ -37,7 +37,8 @@ class SupervisorActivity : BaseActivity(),KodeinAware, AppBarConfiguration.OnNav
 //        setInfoUser(headerView)
         navController = findNavController(R.id.nav_host_supervisor)
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_registro, R.id.nav_registro_vehiculo, R.id.nav_partes
+            R.id.nav_registro, R.id.nav_registro_vehiculo, R.id.nav_partes,R.id.nav_permisos,
+            R.id.nav_personal, R.id.nav_validacion,R.id.nav_perfil
         ) , drawer_layout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navview.setupWithNavController(navController)

@@ -89,7 +89,7 @@ class RegisterActivity : BaseActivity(),KodeinAware{
             register_edit_text_contraseña.requestFocus()
             return
         }
-        val model= requestSignUp(name,paterno,materno,dni,telefono,direction,password)
+        val model= requestSignUp(name,"$paterno $materno",dni,telefono,direction,password)
         viewModel.SignUp(model).observe(this, Observer {
             when(it){
                 is Resource.Loading->{

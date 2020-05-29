@@ -6,10 +6,18 @@
     app:startDestination="@+id/nav_registro_a">
 
     <fragment
-        android:id="@+id/nav_registro_a"
+        android:id="@+id/registro_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal.RegistroPersonalFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_registro_personal"/>
+        tools:layout="@layout/fragment_registro_personal">
+        <argument
+            android:name="new"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_registro_vehiculo_a"
@@ -23,10 +31,18 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_partes" />
     <fragment
-        android:id="@+id/nav_personal_a"
+        android:id="@+id/personal_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.MonitoreoPersonal"
         android:label="fragment_monitoreo_personal"
-        tools:layout="@layout/fragment_monitoreo_personal" />
+        tools:layout="@layout/fragment_monitoreo_personal" >
+        <argument
+            android:name="new"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/nav_permisos_a"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.ordenes.OrdernesProgramadas"
@@ -37,4 +53,20 @@
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.perfil.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_registro_a"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal.Conductores"
+        android:label="Conductores" >
+        <action
+            android:id="@+id/action_nav_registro_a_to_registro_a"
+            app:destination="@id/registro_a" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_personal_a"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_carros.carrosFragment"
+        android:label="carrosFragment" >
+        <action
+            android:id="@+id/action_nav_personal_a_to_personal_a"
+            app:destination="@id/personal_a" />
+    </fragment>
 </navigation>

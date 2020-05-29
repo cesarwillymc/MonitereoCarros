@@ -1,39 +1,38 @@
-package com.consorciosm.sanmiguel.UI.adapters
+package com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.consorciosm.sanmiguel.R
-import com.consorciosm.sanmiguel.data.model.Usuario
+import com.consorciosm.sanmiguel.data.model.UsuarioList
+import kotlinx.android.synthetic.main.fragment_conductores_item.view.*
 
 class UsuarioAdapter(val usuarioListener: UsuarioListener):RecyclerView.Adapter<UsuarioAdapter.ViewHolder>() {
 
-    var listUsuarios = ArrayList<Usuario>()
+    var listUsuarios = ArrayList<UsuarioList>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(
-        R.layout.fragment_registro_carros,parent,false))
+        R.layout.fragment_conductores_item,parent,false))
 
     override fun getItemCount() = listUsuarios.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val user = listUsuarios[position] as Usuario
-//
-//        holder.lblNombre.text = user.name
-//        holder.lblEscuela.text = user.school
-//        holder.lblGrado.text = user.grado
-//        FirebaseStorage.getInstance().getReference("imagenes/perfil/${user.id.replace("-","")}.jpg").downloadUrl.addOnSuccessListener(
-//            OnSuccessListener<Any> { uri ->
-//                Glide.with(holder.itemView.context).load(uri.toString()).into(holder.imgAlumno)
-//            })
+        val user = listUsuarios[position]
+        holder.itemView.fci_txt_celular.text = user.telefono
+        holder.itemView.fci_txt_dni.text = user.dni
+        holder.itemView.fci_txt_nombre.text = "${user.nombres} ${user.paterno}"
+
         holder.itemView.setOnClickListener {
             usuarioListener.onUsuarioClicked(user,position)
         }
 
     }
-    fun updateData(data: List<Usuario>){
+    fun updateData(data: List<UsuarioList>){
         listUsuarios.clear()
         listUsuarios.addAll(data)
         notifyDataSetChanged()

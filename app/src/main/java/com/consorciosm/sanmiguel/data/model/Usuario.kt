@@ -12,9 +12,8 @@ data class Usuario(
     var role:String,
     var accountActive:Boolean,
     var dni:String,
-    var paterno:String,
+    var apellidos:String,
     var nombres:String,
-    var materno:String,
     var telefono:String,
     var direccion:String
 )
