@@ -42,7 +42,11 @@
     <fragment
         android:id="@+id/nav_personal"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.MonitoreoPersonal"
-        tools:layout="@layout/fragment_monitoreo_personal" />
+        tools:layout="@layout/fragment_monitoreo_personal" >
+        <action
+            android:id="@+id/action_nav_personal_to_monitoreoPreview"
+            app:destination="@id/monitoreoPreview" />
+    </fragment>
     <fragment
         android:id="@+id/nav_permisos"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.ordenes.OrdernesProgramadas"
@@ -75,5 +79,14 @@
             android:id="@+id/action_nav_registro_vehiculo_to_registro_vehiculo"
             app:destination="@id/registro_vehiculo"
             app:popUpTo="@id/nav_registro" />
+    </fragment>
+    <fragment
+        android:id="@+id/monitoreoPreview"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.MonitoreoPreview"
+        android:label="fragment_monitoreo_preview"
+        tools:layout="@layout/fragment_monitoreo_preview" >
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

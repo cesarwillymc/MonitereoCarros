@@ -93,6 +93,7 @@ class RegistroPersonalFragment : BaseFragment(),KodeinAware {
     }
 
     private fun setData(data: PersonalData) {
+
         btn_registrar_frp.text="Actualizar datos"
         textView9.visibility=View.VISIBLE
         et_pass_frp.visibility=View.VISIBLE

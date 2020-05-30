@@ -1,5 +1,6 @@
 package com.consorciosm.sanmiguel.ui.main.supervisor
 
+import android.Manifest
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -14,6 +15,11 @@ import com.consorciosm.sanmiguel.base.BaseActivity
 import com.consorciosm.sanmiguel.ui.main.MainViewModelFactory
 import com.consorciosm.sanmiguel.ui.main.ViewModelMain
 import com.google.android.material.navigation.NavigationView
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_supervisor.*
 import kotlinx.android.synthetic.main.app_bar_inicio_main.*
 import org.kodein.di.Kodein
@@ -42,6 +48,29 @@ class SupervisorActivity : BaseActivity(),KodeinAware, AppBarConfiguration.OnNav
         ) , drawer_layout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navview.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            Dexter.withContext(this).withPermissions(
+                listOf(
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+            ).withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
+
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: MutableList<PermissionRequest>?,
+                    p1: PermissionToken?
+                ) {
+
+                }
+
+            }).check()
+        }
 
     }
 

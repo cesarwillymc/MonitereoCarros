@@ -1,5 +1,6 @@
 package com.consorciosm.sanmiguel.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -7,10 +8,15 @@ import com.consorciosm.sanmiguel.common.utils.Resource
 import com.consorciosm.sanmiguel.common.utils.detectar_formato
 import com.consorciosm.sanmiguel.data.model.*
 import com.consorciosm.sanmiguel.data.network.repository.MainRepository
+import com.google.android.gms.maps.model.LatLng
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
+import java.util.HashMap
 
 class ViewModelMain(private val repo: MainRepository) :ViewModel(){
     val getLoggetUser = repo.getUser()
@@ -40,7 +46,8 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             val nameFile = RequestBody.create(MediaType.parse("text/plain"),name )
             val archivo=guardarFotoEnArchivo(name,file)
             val dato=repo.createVehiculo(vehiculo)
-            repo.updatePhotoRest(archivo!!,nameFile,dato.message)
+            Log.e("cardid",dato.carId)
+            repo.updatePhotoRest(archivo!!,nameFile,dato.carId)
             emit(Resource.Success(Unit))
         }catch (e:Exception){
             emit(Resource.Failure(e) )
@@ -88,7 +95,7 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
-    val conductoresSinVehiculo:LiveData<Resource<List<UsuarioList>>>  = liveData {
+    fun conductoresSinVehiculo():LiveData<Resource<List<UsuarioList>>>  = liveData (Dispatchers.IO){
         emit(Resource.Loading())
         try{
             val dato=repo.getListUser(false)
@@ -124,4 +131,75 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
+
+
+    //Maps
+
+    //Load Mapas Cars
+    val markersTimeReal = liveData {
+        emit(Resource.Loading())
+        try {
+            repo.getPositionsConductores().collect {
+                emit(it)
+            }
+        }catch (e:Exception){
+            emit(Resource.Failure(e))
+        }
+    }
+    fun getDataRecorridoConductor(id:String):LiveData<Resource<RutaProgramada>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getRecorridoChoferId(id)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+//    @ExperimentalStdlibApi
+//    fun getRutaMapa(origin: LatLng, dest: LatLng):LiveData<Resource<ArrayList<LatLng>>> = liveData(Dispatchers.IO){
+//        emit(Resource.Loading())
+//        try{
+//            runBlocking {
+//                val dato=repo.getStringPoline(getDirectionsUrl(origin,dest))
+//                val convertData= getDataPoints(dato) as ArrayList<LatLng>
+//                emit(Resource.Success(convertData))
+//            }
+//        }catch (e:Exception){
+//            emit(Resource.Failure(e))
+//        }
+//    }
+
+//    @ExperimentalStdlibApi
+//    private suspend  fun getDataPoints(dato: MutableList<MutableList<HashMap<String, String>>>): List<LatLng> = buildList {
+//        //var points: ArrayList<LatLng> = ArrayList()
+//
+//        for (i in dato) {
+//            for (j in i) {
+//                val lat = j["lat"]!!.toDouble()
+//                val lng = j["lng"]!!.toDouble()
+//                val position =
+//                    LatLng(lat, lng)
+//                add(position)
+//            }
+//        }
+//    }
+//
+//    private fun getDirectionsUrl(
+//        origin: LatLng,
+//        dest: LatLng
+//    ): String { // Punto de origen
+//        val str_origin = "origin=" + origin.latitude + "," + origin.longitude
+//        // punto de destino
+//        val str_dest = "destination=" + dest.latitude + "," + dest.longitude
+//        // Sensor de modo drive
+//        val sensor = "sensor=false"
+//        val mode = "mode=driving"
+//        // Sensor
+//        val parameters = "$str_origin&$str_dest&$sensor&$mode"
+//        // Formato de salida
+//        val output = "json"
+//        // url
+//        // https://maps.googleapis.com/maps/api/directions/json?origin=-15.837974456285096,-70.02117622643709&destination=-15.837974456285096,-70.02117622643709&sensor=false&mode=driving&key=AIzaSyD7kwgqDzGW8voiXP7gAbxaKnGY_Fr4Cng
+//        return "$output?$parameters&key=AIzaSyBXQBe1pHpqQkclaoMEuAnZ6QVFbC860Yo"
+//    }
 }

@@ -39,9 +39,13 @@ class carrosFragment : BaseFragment(),KodeinAware ,CarrosListener,SpinnerListene
         val datos = SpinnerAdapter(this,
             requireContext()
         )
-        datos.updateData(colors)
-        spinner.adapter = datos
 
+        datos.updateData(colors)
+
+        spinner.apply {
+            isNestedScrollingEnabled=true
+            adapter = datos
+        }
         carrosAdapter = CarrosAdapter(this)
         fcarros_rv.apply {
             //, LinearLayoutManager.VERTICAL,false
@@ -58,6 +62,23 @@ class carrosFragment : BaseFragment(),KodeinAware ,CarrosListener,SpinnerListene
         add_carros.setOnClickListener {
             val nav=carrosFragmentDirections.actionNavRegistroVehiculoToRegistroVehiculo(true,"null")
             findNavController().navigate(nav)
+        }
+        spinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                value = when (position) {
+                    0 -> {
+                        null
+                    }
+                    1 -> {
+                        false
+                    }
+                    else -> true
+                }
+                getCarroslIs()
+            }
+
         }
     }
 

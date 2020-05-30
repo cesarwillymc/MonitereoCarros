@@ -25,7 +25,7 @@ class UsuarioAdapter(val usuarioListener: UsuarioListener):RecyclerView.Adapter<
         val user = listUsuarios[position]
         holder.itemView.fci_txt_celular.text = user.telefono
         holder.itemView.fci_txt_dni.text = user.dni
-        holder.itemView.fci_txt_nombre.text = "${user.nombres} ${user.paterno}"
+        holder.itemView.fci_txt_nombre.text = "${user.nombres} ${user.apellidos}"
 
         holder.itemView.setOnClickListener {
             usuarioListener.onUsuarioClicked(user,position)

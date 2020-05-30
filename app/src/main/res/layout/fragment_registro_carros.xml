@@ -48,8 +48,11 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+
                 android:id="@+id/et_nro_placa_frc"
                 android:layout_width="match_parent"
+                android:hint="XD56A5"
                 android:layout_height="wrap_content"/>
 
             <TextView
@@ -68,6 +71,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="2000"
                 android:id="@+id/et_nro_serie_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -78,6 +83,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="2000"
                 android:id="@+id/et_nro_vin_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -88,16 +95,23 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="Buggy Arenero"
                 android:id="@+id/et_nro_motor_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:id="@+id/txt_color_frc"
                 android:text="Color:"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:imeOptions="actionNext"
+                android:hint="AAADSA"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
                 android:id="@+id/et_color_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -107,16 +121,21 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="Toyota"
                 android:id="@+id/et_marca_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <TextView
+
                 android:text="Modelo:"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="Corola"
                 android:id="@+id/et_modelo_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -127,6 +146,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="XSD5A6"
                 android:id="@+id/et_placa_vigente_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -137,6 +158,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="ADA56S"
                 android:id="@+id/et_placa_anterior_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -147,6 +170,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="En transito"
                 android:id="@+id/et_estado_frc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -157,6 +182,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="El auto no cuenta con ninguna rayadura"
                 android:id="@+id/et_anotaciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -166,6 +193,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="Puno"
                 android:id="@+id/et_sede"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -175,6 +204,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                  android:imeOptions="actionNext"
+                android:hint="1200"
                 android:id="@+id/et_kilometros"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -184,6 +215,8 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:imeOptions="actionDone"
+                android:hint="80"
                 android:id="@+id/et_Conbustible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
