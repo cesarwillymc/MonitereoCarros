@@ -95,6 +95,33 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
+    fun getListPartes(hora:String?=null,fecha:String):LiveData<Resource<List<PartesList>>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getListPartes(hora,fecha)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    fun getparteId(id:String):LiveData<Resource<ParteDiario>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getParteId(id)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    fun validarParte(id:String):LiveData<Resource<Unit>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.validarParte(id)
+            emit(Resource.Success(Unit))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
     fun conductoresSinVehiculo():LiveData<Resource<List<UsuarioList>>>  = liveData (Dispatchers.IO){
         emit(Resource.Loading())
         try{

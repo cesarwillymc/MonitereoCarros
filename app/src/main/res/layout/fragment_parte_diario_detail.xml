@@ -4,9 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.main.admin.ui.partes.PartePreview">
 
-
+    <include
+        android:id="@+id/login_progressbar"
+        layout="@layout/progressbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -113,7 +123,7 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/ll_nombres_fp"
+                        android:id="@+id/ll_licencia"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -121,6 +131,32 @@
                         android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ll_empresaproveedora_fp">
+
+                        <TextView
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Licencia Empresa:" />
+
+                        <TextView
+                            android:id="@+id/lbl_empresaprov_licencia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:text="SADSAD" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_nombres_fp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ll_licencia">
 
                         <TextView
                             android:gravity="end"
@@ -393,6 +429,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_tarjeta_proiedad_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -416,6 +455,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_soat_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -451,6 +493,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_triangulos_seguridad_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -473,6 +518,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_botiquin_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -508,6 +556,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_nivel_aceite_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -531,6 +582,9 @@
                                 android:text="Nivel de Agua" />
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_nivel_agua_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -565,6 +619,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_nivel_liquido_frenos_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -587,6 +644,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_nivel_liquido_hidrolina_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -621,6 +681,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_espejos_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -643,6 +706,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_gata_palanca_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -677,6 +743,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_extintor_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -699,6 +768,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_luces_exteriores_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -733,6 +805,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_nivel_refrigerante_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -755,6 +830,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_alarma_retroceso_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -789,6 +867,9 @@
                                 android:layout_height="match_parent"/>
 
                             <CheckBox
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:id="@+id/cb_herramientas_fparte"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -993,8 +1074,51 @@
                         app:layout_constraintTop_toBottomOf="@+id/TextView33" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
 
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/cv_actividad_dia_fp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nivel de combustible"/>
+                <EditText
+                    android:id="@+id/niveldeConbustible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nivel de Combustible"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:id="@+id/photoCombustible"
+                        android:layout_gravity="center"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@color/colorPrimary"/>
+
+                </LinearLayout>
+                <Button
+                    android:layout_margin="5dp"
+                    android:id="@+id/sendParte"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Validar Parte"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:background="#000"/>
+
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

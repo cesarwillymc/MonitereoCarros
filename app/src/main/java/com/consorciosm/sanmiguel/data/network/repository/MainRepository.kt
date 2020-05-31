@@ -40,6 +40,9 @@ class MainRepository (
     }
     suspend fun updateVehiculo(vehiculo: VehiculoCreate,id:String)=apiRequest { api.updateVehiculo(vehiculo,id) }
     suspend fun getListUser(value:Boolean?)= apiRequest { api.getListUser(value) }
+    suspend fun getListPartes(hora:String?=null,fecha:String)= apiRequest { api.getListPartes(fecha,hora) }
+    suspend fun getParteId(id:String)= apiRequest { api.getParteId(id) }
+    suspend fun validarParte(id:String)= apiRequest { api.validarParte(id) }
     suspend fun getListCarros(value:Boolean?)= apiRequest { api.getListCarros(value) }
     suspend fun getInfoCarro(value:String)= apiRequest { api.getCarroId(value) }
     suspend fun getInfoUser(value:String)= apiRequest { api.getUserId(value) }

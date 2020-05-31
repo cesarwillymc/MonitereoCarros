@@ -5,7 +5,9 @@ data class ParteDiario(
     var estadoVehiculo: EstadoVehiculo,
     var actividadDiaria:ActividadDiaria,
     var ncombustible:Ncombustible,
-    var abastecimiento:Abastecimiento
+    var abastecimiento:Abastecimiento,
+    var vehiculoInfo: VehiculoInfo,
+    var chofer: PersonalData
 )
 data class InfoGeneral(
     var fechaDia:String,
@@ -15,21 +17,21 @@ data class InfoGeneral(
     var entradaGaraje:String
 )
 data class EstadoVehiculo(
-    var tarjetaPropiedad:String,
-    var ConosSeguridad:String,
-    var NivelAceite:String,
-    var LiquidoFrenos:String,
-    var Espejos:String,
-    var Soat:String,
-    var Botiquin:String,
-    var NivelAgua:String,
-    var LiquidoHidrolina:String,
-    var GataPalanca:String,
-    var Extintor:String,
-    var LucesExteriores:String,
-    var RefrigeranteRadiador:String,
-    var AlarmaRetroceso:String,
-    var Herramientas:String
+    var tarjetaPropiedad:Boolean,
+    var ConosSeguridad:Boolean,
+    var NivelAceite:Boolean,
+    var LiquidoFrenos:Boolean,
+    var Espejos:Boolean,
+    var Soat:Boolean,
+    var Botiquin:Boolean,
+    var NivelAgua:Boolean,
+    var LiquidoHidrolina:Boolean,
+    var GataPalanca:Boolean,
+    var Extintor:Boolean,
+    var LucesExteriores:Boolean,
+    var RefrigeranteRadiador:Boolean,
+    var AlarmaRetroceso:Boolean,
+    var Herramientas:Boolean
 )
 data class ActividadDiaria(
     var actividad:String,
@@ -39,7 +41,8 @@ data class ActividadDiaria(
     var KilometrajeFin:String
 )
 data class Ncombustible(
-    var Ndecombustible:String
+    var Ndecombustible:String,
+    var imgCombustible:String
 )
 data class Abastecimiento(
     var Kilometraje:String,

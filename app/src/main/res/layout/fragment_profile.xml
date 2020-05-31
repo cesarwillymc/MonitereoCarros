@@ -40,7 +40,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
-                android:fontFamily="@font/montserrat"
 
                 android:gravity="center_horizontal"
                 android:text="Cerrar Sesion"

@@ -39,7 +39,11 @@
         android:id="@+id/nav_partes"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.partes.PartesFragment"
         android:label="Partes diarias"
-        tools:layout="@layout/fragment_partes" />
+        tools:layout="@layout/fragment_partes" >
+        <action
+            android:id="@+id/action_nav_partes_to_partePreview"
+            app:destination="@id/partePreview" />
+    </fragment>
     <fragment
         android:id="@+id/nav_personal"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.MonitoreoPersonal"
@@ -62,7 +66,7 @@
     <fragment
         android:id="@+id/nav_validacion"
         android:name="com.consorciosm.sanmiguel.ui.main.supervisor.notificaciones.NotificacionesFragment"
-        android:label="fragment_notificaciones"
+        android:label="Validacion de Ordenes programadas"
         tools:layout="@layout/fragment_notificaciones" />
     <fragment
         android:id="@+id/nav_registro"
@@ -87,6 +91,15 @@
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.MonitoreoPreview"
         android:label="Rutas recorridas "
         tools:layout="@layout/fragment_monitoreo_preview">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/partePreview"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.partes.PartePreview"
+        android:label="fragment_parte_diario_detail"
+        tools:layout="@layout/fragment_parte_diario_detail" >
         <argument
             android:name="id"
             app:argType="string" />

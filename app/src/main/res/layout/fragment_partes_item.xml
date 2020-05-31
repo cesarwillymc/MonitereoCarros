@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
+        android:layout_margin="3dp"
         android:layout_height="wrap_content" >
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -77,10 +77,25 @@ interface ApiRetrofitKey {
         @Path("id") id:String
     ):Response<PersonalData>
 
+
     @GET("admin/recorrido/{id}")
     suspend fun getRecorridoChofer(
         @Path("id") id:String
     ):Response<RutaProgramada>
+    //Get Partes
+    @GET("admin/users")
+    suspend fun getListPartes(
+        @Query("fecha") fecha:String,
+        @Query("hora") hora:String?=null
+    ):Response<List<PartesList>>
+    @GET("admin/userinfo/{id}")
+    suspend fun getParteId(
+        @Path("id") id:String
+    ):Response<ParteDiario>
+    @GET("admin/userinfo/{id}")
+    suspend fun validarParte(
+        @Path("id") id:String
+    ):Response<ParteDiario>
 //    @GET
 //    suspend fun callMaps(
 //        @Url url: String?
