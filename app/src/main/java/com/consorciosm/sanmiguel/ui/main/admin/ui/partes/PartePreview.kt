@@ -10,6 +10,7 @@ import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseFragment
 import com.consorciosm.sanmiguel.common.constans.Constants.BASE_URL_AMAZON_IMG
 import com.consorciosm.sanmiguel.common.utils.Resource
+import com.consorciosm.sanmiguel.data.model.Parte
 import com.consorciosm.sanmiguel.data.model.ParteDiario
 import com.consorciosm.sanmiguel.ui.main.MainViewModelFactory
 import com.consorciosm.sanmiguel.ui.main.ViewModelMain
@@ -72,44 +73,45 @@ class PartePreview:BaseFragment(),KodeinAware {
         })
     }
 
-    fun SetearData(parteDiario: ParteDiario){
-        lbl_fecha_fparte.text = parteDiario.infoGeneral.fechaDia
-        lbl_empresaprov_fparte.text = parteDiario.infoGeneral.empresaProveedora
-        lbl_empresaprov_licencia.text = parteDiario.infoGeneral.licenciaEmpresa
-        lbl_horasalida_fparte.text = parteDiario.infoGeneral.salidaGaraje
-        lbl_horaingreso_fparte.text = parteDiario.infoGeneral.entradaGaraje
-        lbl_actividad_fparte.text = parteDiario.actividadDiaria.actividad
-        lbl_hora_inicio_fparte.text = parteDiario.actividadDiaria.Horainicio
-        lbl_kilometraje_inicio_fparte.text = parteDiario.actividadDiaria.Kilometrajeinicio
-        lbl_hora_final_fparte.text = parteDiario.actividadDiaria.HoraFin
-        lbl_kilometraje_final_fparte.text = parteDiario.actividadDiaria.KilometrajeFin
-        lbl_kilometraje_abastecimiento_fparte.text = parteDiario.abastecimiento.Kilometraje
-        lbl_galones_abastecimiento_fparte.text = parteDiario.abastecimiento.galones
-       niveldeConbustible.setText(parteDiario.ncombustible.Ndecombustible)
-        lbl_licencia_fparte.text= parteDiario.infoGeneral.licenciaEmpresa
-        lbl_nombres_fparte.text="${parteDiario.chofer.nombres} ${parteDiario.chofer.apellidos}"
-        lbl_marca_vehiculo_fparte.text= parteDiario.vehiculoInfo.Marca
-        lbl_modelo_vehiculo_fparte.text= parteDiario.vehiculoInfo.Modelo
-        lbl_placa_vehiculo_fparte.text= parteDiario.vehiculoInfo.idPlaca
+    fun SetearData(parteDiario: Parte){
+        Log.e("parteDiario",parteDiario.toString())
+        lbl_fecha_fparte.text = parteDiario.parte.fechaDia
+        lbl_empresaprov_fparte.text = parteDiario.parte.empresaProveedora
+        lbl_empresaprov_licencia.text = parteDiario.parte.licenciaEmpresa
+        lbl_horasalida_fparte.text = parteDiario.parte.salidaGaraje
+        lbl_horaingreso_fparte.text = parteDiario.parte.entradaGaraje
+        lbl_actividad_fparte.text = parteDiario.parte.actividad
+        lbl_hora_inicio_fparte.text = parteDiario.parte.Horainicio
+        lbl_kilometraje_inicio_fparte.text = parteDiario.parte.Kilometrajeinicio
+        lbl_hora_final_fparte.text = parteDiario.parte.HoraFin
+        lbl_kilometraje_final_fparte.text = parteDiario.parte.KilometrajeFin
+        lbl_kilometraje_abastecimiento_fparte.text = parteDiario.parte.Kilometraje
+        lbl_galones_abastecimiento_fparte.text = parteDiario.parte.galones
+       niveldeConbustible.setText(parteDiario.parte.Ndecombustible)
+        lbl_licencia_fparte.text= parteDiario.parte.licenciaEmpresa
+        lbl_nombres_fparte.text="${parteDiario.conductor.nombres} ${parteDiario.conductor.apellidos}"
+        lbl_marca_vehiculo_fparte.text= parteDiario.vehiculo.marca
+        lbl_modelo_vehiculo_fparte.text= parteDiario.vehiculo.modelo
+        lbl_placa_vehiculo_fparte.text= parteDiario.vehiculo.numeroPlaca
 
-        Glide.with(requireContext()).load(BASE_URL_AMAZON_IMG+parteDiario.ncombustible.imgCombustible).into(photoCombustible)
+        Glide.with(requireContext()).load(BASE_URL_AMAZON_IMG+parteDiario.parte.imgNivelCombustible).into(photoCombustible)
         //Estado Vehiculo
 
-        cb_tarjeta_proiedad_fparte.isChecked=parteDiario.estadoVehiculo.tarjetaPropiedad
-        cb_soat_fparte.isChecked=parteDiario.estadoVehiculo.Soat
-        cb_triangulos_seguridad_fparte.isChecked=parteDiario.estadoVehiculo.ConosSeguridad
-         cb_botiquin_fparte.isChecked=parteDiario.estadoVehiculo.Botiquin
-        cb_nivel_aceite_fparte.isChecked=parteDiario.estadoVehiculo.NivelAceite
-        cb_nivel_agua_fparte.isChecked=parteDiario.estadoVehiculo.NivelAgua
-        cb_nivel_liquido_frenos_fparte.isChecked=parteDiario.estadoVehiculo.LiquidoFrenos
-        cb_nivel_liquido_hidrolina_fparte.isChecked=parteDiario.estadoVehiculo.LiquidoHidrolina
-        cb_espejos_fparte.isChecked=parteDiario.estadoVehiculo.Espejos
-        cb_gata_palanca_fparte.isChecked=parteDiario.estadoVehiculo.GataPalanca
-        cb_extintor_fparte.isChecked=parteDiario.estadoVehiculo.Extintor
-        cb_luces_exteriores_fparte.isChecked=parteDiario.estadoVehiculo.LucesExteriores
-         cb_nivel_refrigerante_fparte.isChecked=parteDiario.estadoVehiculo.RefrigeranteRadiador
-         cb_alarma_retroceso_fparte.isChecked=parteDiario.estadoVehiculo.AlarmaRetroceso
-        cb_herramientas_fparte.isChecked=parteDiario.estadoVehiculo.Herramientas
+        cb_tarjeta_proiedad_fparte.isChecked=parteDiario.parte.tarjetaPropiedad
+        cb_soat_fparte.isChecked=parteDiario.parte.Soat
+        cb_triangulos_seguridad_fparte.isChecked=parteDiario.parte.ConosSeguridad
+         cb_botiquin_fparte.isChecked=parteDiario.parte.Botiquin
+        cb_nivel_aceite_fparte.isChecked=parteDiario.parte.NivelAceite
+        cb_nivel_agua_fparte.isChecked=parteDiario.parte.NivelAgua
+        cb_nivel_liquido_frenos_fparte.isChecked=parteDiario.parte.LiquidoFrenos
+        cb_nivel_liquido_hidrolina_fparte.isChecked=parteDiario.parte.LiquidoHidrolina
+        cb_espejos_fparte.isChecked=parteDiario.parte.Espejos
+        cb_gata_palanca_fparte.isChecked=parteDiario.parte.GataPalanca
+        cb_extintor_fparte.isChecked=parteDiario.parte.Extintor
+        cb_luces_exteriores_fparte.isChecked=parteDiario.parte.LucesExteriores
+         cb_nivel_refrigerante_fparte.isChecked=parteDiario.parte.RefrigeranteRadiador
+         cb_alarma_retroceso_fparte.isChecked=parteDiario.parte.AlarmaRetroceso
+        cb_herramientas_fparte.isChecked=parteDiario.parte.Herramientas
 
     }
 }

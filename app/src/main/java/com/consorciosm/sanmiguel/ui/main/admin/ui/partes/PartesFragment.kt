@@ -40,9 +40,9 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
     var hora=""
     var minuto=""
 
-    var anio= Calendar.getInstance().get(Calendar.YEAR).toString()
-    var mes= "${Calendar.getInstance().get(Calendar.MONTH)+1}"
-    var dia= Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
+    var anio= Calendar.getInstance().get(Calendar.YEAR)
+    var mes= Calendar.getInstance().get(Calendar.MONTH)
+    var dia= Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= requireActivity().run {
@@ -74,15 +74,13 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
         if (hora.isNotEmpty()){
             "$hora:$minuto:00"
         }
-        viewModel.getListPartes(horas,"$anio-$mes-$dia").observe(viewLifecycleOwner, Observer {
+        viewModel.getListPartes(horas,fechaModel()).observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{
                     rl_frag_partes.visibility= View.VISIBLE
                 }
                 is Resource.Success->{
-                    if (mes.toInt()<10)
-                        mes= "0$mes"
-                    searchFecha.setText("$anio-$mes-$dia")
+                    searchFecha.setText(fechaModel())
                    partesAdapter.updateData(it.data)
                     rl_frag_partes.visibility= View.GONE
                 }
@@ -106,14 +104,24 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        anio=year.toString()
-        mes=(month+1).toString()
-        dia=dayOfMonth.toString()
-        if (month<10)
-            mes="0$month"
-        if (dayOfMonth+1<10)
-            dia="0$dayOfMonth"
-        searchFecha.setText("$anio-$mes-$dia")
+        anio=year
+        mes=month
+        dia=dayOfMonth
+
+        searchFecha.setText(fechaModel())
+    }
+    private fun fechaModel():String{
+        var fechaParte="$anio-${mes+1}-$dia"
+        if (mes+1<10){
+            fechaParte = if (dia<10)
+                "$anio-0${mes+1}-0$dia"
+            else
+                "$anio-0${mes+1}-$dia"
+        }else{
+            if (dia<10)
+                fechaParte="$anio-${mes+1}-0$dia"
+        }
+        return fechaParte
     }
     private fun showDialog() {
         TimePickerDialog( requireActivity(),
@@ -122,9 +130,9 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
     }
     private fun showDialogPicker() {
         val datepicker= DatePickerDialog(requireContext(),this,
-            anio.toInt(),
-            mes.toInt(),
-            dia.toInt())
+            anio,
+            mes,
+            dia)
         datepicker.show()
     }
 }

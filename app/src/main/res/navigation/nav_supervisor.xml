@@ -98,8 +98,8 @@
     <fragment
         android:id="@+id/partePreview"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.partes.PartePreview"
-        android:label="fragment_parte_diario_detail"
-        tools:layout="@layout/fragment_parte_diario_detail" >
+        android:label="Parte Diario"
+        tools:layout="@layout/fragment_parte_diario_detail">
         <argument
             android:name="id"
             app:argType="string" />

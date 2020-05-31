@@ -24,13 +24,15 @@ class PartesAdapter(val partesListener: PartesListener): RecyclerView.Adapter<Pa
 
         val user = partesList[position]
 
-        holder.itemView.lbl_conductor_item_parte.text = user.placa
+        holder.itemView.lbl_conductor_item_parte.text = user.nombres
         holder.itemView.lbl_placa_item_parte.text = user.placa
         holder.itemView.lbl_model_item_parte.text = user.modelo
         holder.itemView.lbl_model_item_parte.backgroundColor= user.color
         if (user.accept){
+            holder.itemView.estadoParte.backgroundColor = holder.itemView.context.getColor(R.color.verde)
             holder.itemView.estadoParte.text = "Aceptado"
         }else{
+            holder.itemView.estadoParte.backgroundColor = holder.itemView.context.getColor(R.color.rojo)
             holder.itemView.estadoParte.text = "No Aceptado"
         }
 

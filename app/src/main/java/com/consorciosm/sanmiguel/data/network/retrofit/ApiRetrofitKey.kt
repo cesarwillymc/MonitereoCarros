@@ -88,11 +88,11 @@ interface ApiRetrofitKey {
         @Query("fecha") fecha:String,
         @Query("hora") hora:String?=null
     ):Response<List<PartesList>>
-    @GET("admin/userinfo/{id}")
+    @GET("admin/userParte/{id}")
     suspend fun getParteId(
         @Path("id") id:String
-    ):Response<ParteDiario>
-    @GET("admin/userinfo/{id}")
+    ):Response<Parte>
+    @POST("admin/validaParte/{id}")
     suspend fun validarParte(
         @Path("id") id:String
     ):Response<ParteDiario>

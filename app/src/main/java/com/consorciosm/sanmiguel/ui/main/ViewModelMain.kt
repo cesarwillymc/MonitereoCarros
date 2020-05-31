@@ -104,7 +104,7 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
-    fun getparteId(id:String):LiveData<Resource<ParteDiario>> = liveData {
+    fun getparteId(id:String):LiveData<Resource<Parte>> = liveData {
         emit(Resource.Loading())
         try{
             val dato=repo.getParteId(id)
