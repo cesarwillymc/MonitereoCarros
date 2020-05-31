@@ -19,27 +19,27 @@
 
 
             <TextView
-                android:id="@+id/lbl_destino_conductor_notificaciones_item"
+                android:id="@+id/lbl_destino_fop_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Destino"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_fecha_conductor_notificaciones_item" />
+                app:layout_constraintTop_toBottomOf="@+id/lbl_fecha_fop_item" />
 
             <TextView
-                android:id="@+id/lbl_fecha_conductor_notificaciones_item"
+                android:id="@+id/lbl_fecha_fop_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Fecha"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_nombre_conductor_notificaciones_item" />
+                app:layout_constraintTop_toBottomOf="@+id/lbl_nombre_conductor_fop_item" />
 
             <TextView
-                android:id="@+id/lbl_nombre_conductor_notificaciones_item"
+                android:id="@+id/lbl_nombre_conductor_fop_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -62,7 +62,7 @@
                 android:textColor="#fff"
 
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lbl_destino_conductor_notificaciones_item" />
+                app:layout_constraintTop_toBottomOf="@+id/lbl_destino_fop_item" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
