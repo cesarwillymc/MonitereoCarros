@@ -22,10 +22,6 @@ fun detectar_formato(texto: String): String {
         "jpg"
     } else if (texto.contains("jpeg")) {
         "jpeg"
-    } else if (texto.contains("svg")) {
-        "svg"
-    } else if (texto.contains("png")) {
-        "png"
-    } else
+    }  else
         "ninguno"
 }

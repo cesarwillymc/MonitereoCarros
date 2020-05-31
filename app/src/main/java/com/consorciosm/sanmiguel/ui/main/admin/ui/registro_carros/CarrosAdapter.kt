@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.data.model.CarrosList
 import kotlinx.android.synthetic.main.fragment_carros_item.view.*
+import org.jetbrains.anko.backgroundColor
 
 class CarrosAdapter(val carrosListener: CarrosListener):RecyclerView.Adapter<CarrosAdapter.ViewHolder>() {
 
@@ -25,6 +26,7 @@ class CarrosAdapter(val carrosListener: CarrosListener):RecyclerView.Adapter<Car
         holder.itemView.fci_txt_placa.text = user.numeroPlaca
         holder.itemView.fci_txt_modelo.text = user.modelo
         holder.itemView.fci_txt_color.text = user.color
+        holder.itemView.textView21.backgroundColor= user.color.toInt()
 
 
         holder.itemView.setOnClickListener {

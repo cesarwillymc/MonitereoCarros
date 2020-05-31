@@ -1,20 +1,23 @@
 package com.consorciosm.sanmiguel.data.model
 
 data class VehiculoCreate(
-    val Nplaca:String,
-    val Conductor:String,
-    val Nserie:String,
-    val Nvin:String,
-    val Nmotor:String,
+    val numeroPlaca:String,
+    val conductor:String,
+    val numeroSerie:String,
+    val numeroVin:String,
+    val numeroMotor:String,
     val color:String,
-    val Nmarca:String,
+    val marca:String,
     val modelo:String,
     val placaVigente:String,
-    val placaAnterior:String,
+    val placaAnterior:String="",
     val estado:String,
     val anotaciones:String,
     val sede:String,
     val kilometros:String,
     val nivelCombustible:String,
-    val img:String=""
+    val imagenCarro:String="",
+    val nombres:String="",
+    val apellidos:String=""
 )
+

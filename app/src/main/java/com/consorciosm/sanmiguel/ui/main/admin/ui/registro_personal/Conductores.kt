@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,7 +27,7 @@ import org.kodein.di.generic.instance
 /**
  * A simple [Fragment] subclass.
  */
-class Conductores : BaseFragment(), UsuarioListener, KodeinAware, SpinnerListener {
+class Conductores : BaseFragment(), UsuarioListener, KodeinAware,SpinnerListener {
     var value: Boolean? = null
     override val kodein: Kodein by kodein()
     private lateinit var viewModel: ViewModelMain
@@ -40,13 +41,15 @@ class Conductores : BaseFragment(), UsuarioListener, KodeinAware, SpinnerListene
         }
 
         val colors = listOf("all", "Sin Vehiculo", "Con Vehiculo")
-        val datos = SpinnerAdapter(
-            this,
+        val datos = SpinnerAdapter(this,
             requireContext()
         )
         datos.updateData(colors)
-        spinner.adapter = datos
-
+        spinner.apply {
+            dropDownHorizontalOffset
+            isNestedScrollingEnabled=true
+            adapter = datos
+        }
 
         usuarioAdapter = UsuarioAdapter(this)
         fconductores_rv.apply {
@@ -60,6 +63,23 @@ class Conductores : BaseFragment(), UsuarioListener, KodeinAware, SpinnerListene
         swiperefresh.setOnRefreshListener {
             updateValues()
             swiperefresh.isRefreshing = false
+
+        }
+        spinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                value = when (position) {
+                    0 -> {
+                        null
+                    }
+                    1 -> {
+                        false
+                    }
+                    else -> true
+                }
+                updateValues()
+            }
 
         }
         add_user.setOnClickListener {

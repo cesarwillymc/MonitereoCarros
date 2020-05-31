@@ -32,16 +32,16 @@ interface ApiRetrofitKey {
         @Body usuario: PersonalData,
         @Path("id") id :String
     ): Response<ResponseGeneral>
-    @POST("admin/registro")
+    @POST("admin/createVehiculo")
     suspend fun createVehiculo(
         @Body vehiculo: VehiculoCreate
     ): Response<ResponseGeneral>
     @Multipart
-    @PUT("service/setServiceImg")
+    @PUT("admin/carImg/{carId}")
     suspend fun createPhotoVehiculo(
         @Part file: MultipartBody.Part,
-        @Part("service") name: RequestBody,
-        @Query("key") key:String?
+        @Part("carImg") name: RequestBody,
+        @Path("carId") carId:String?
     ): Response<ResponseGeneral>
     @Multipart
     @PUT("service/setServiceImg")
@@ -50,7 +50,7 @@ interface ApiRetrofitKey {
         @Part("service") name: RequestBody,
         @Query("key") key:String?
     ): Response<ResponseGeneral>
-    @PUT("admin/registro/{id}")
+    @PUT("admin/updateVehiculo/{id}")
     suspend fun updateVehiculo(
         @Body vehiculo: VehiculoCreate,
         @Path("id") id:String
@@ -63,7 +63,7 @@ interface ApiRetrofitKey {
     suspend fun getListCarros(
         @Query("chofer")chofer:Boolean?=null
     ):Response<List<CarrosList>>
-    @GET("admin/cars/{id}")
+    @GET("admin/carinfo/{id}")
     suspend fun getCarroId(
         @Path("id") id:String
     ):Response<VehiculoCreate>
@@ -76,6 +76,15 @@ interface ApiRetrofitKey {
     suspend fun getUserId(
         @Path("id") id:String
     ):Response<PersonalData>
+
+    @GET("admin/recorrido/{id}")
+    suspend fun getRecorridoChofer(
+        @Path("id") id:String
+    ):Response<RutaProgramada>
+//    @GET
+//    suspend fun callMaps(
+//        @Url url: String?
+//    ): Response<ResponseMaps>
     companion object{
         operator fun invoke() : ApiRetrofitKey{
             val okHttpClienteBuilder= OkHttpClient.Builder().addInterceptor(InterceptorToken()).build()
@@ -88,5 +97,6 @@ interface ApiRetrofitKey {
                 .build()
                 .create(ApiRetrofitKey::class.java)
         }
+
     }
 }
