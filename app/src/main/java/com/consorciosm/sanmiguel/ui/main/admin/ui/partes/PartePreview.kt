@@ -31,6 +31,7 @@ class PartePreview:BaseFragment(),KodeinAware {
         viewModel= requireActivity().run {
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
+        id= PartePreviewArgs.fromBundle(requireArguments()).id
         viewModel.getparteId(id).observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{

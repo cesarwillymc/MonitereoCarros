@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseFragment
@@ -39,9 +40,9 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
     var hora=""
     var minuto=""
 
-    var anio= Calendar.getInstance().get(Calendar.YEAR)
-    var mes= Calendar.getInstance().get(Calendar.MONTH)
-    var dia= Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+    var anio= Calendar.getInstance().get(Calendar.YEAR).toString()
+    var mes= "${Calendar.getInstance().get(Calendar.MONTH)+1}"
+    var dia= Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= requireActivity().run {
@@ -63,7 +64,8 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
             showDialogPicker()
         }
         searchHour.setOnClickListener {
-            showDialog()
+            snakBar("Opcion No habilitada")
+//            showDialog()
         }
 
     }
@@ -78,6 +80,9 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
                     rl_frag_partes.visibility= View.VISIBLE
                 }
                 is Resource.Success->{
+                    if (mes.toInt()<10)
+                        mes= "0$mes"
+                    searchFecha.setText("$anio-$mes-$dia")
                    partesAdapter.updateData(it.data)
                     rl_frag_partes.visibility= View.GONE
                 }
@@ -90,7 +95,8 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
         })
     }
     override fun listener(partesList: PartesList, position: Int) {
-
+       val  nav =PartesFragmentDirections.actionNavPartesToPartePreview(partesList.id)
+        findNavController().navigate(nav)
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
@@ -100,9 +106,13 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        anio=year
-        mes=month
-        dia=dayOfMonth
+        anio=year.toString()
+        mes=(month+1).toString()
+        dia=dayOfMonth.toString()
+        if (month<10)
+            mes="0$month"
+        if (dayOfMonth+1<10)
+            dia="0$dayOfMonth"
         searchFecha.setText("$anio-$mes-$dia")
     }
     private fun showDialog() {
@@ -112,9 +122,9 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
     }
     private fun showDialogPicker() {
         val datepicker= DatePickerDialog(requireContext(),this,
-            anio,
-            mes,
-            dia)
+            anio.toInt(),
+            mes.toInt(),
+            dia.toInt())
         datepicker.show()
     }
 }

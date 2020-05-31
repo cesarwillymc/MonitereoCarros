@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="time2">#FFEB3B</color>
+    <color name="verde">#76FF03</color>
+    <color name="rojo">#FF1E00</color>
 </resources>

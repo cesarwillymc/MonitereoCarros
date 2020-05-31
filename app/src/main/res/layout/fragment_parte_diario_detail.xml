@@ -1089,6 +1089,8 @@
                 <EditText
                     android:id="@+id/niveldeConbustible"
                     android:layout_width="match_parent"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:layout_height="wrap_content"
                     android:hint="Nivel de Combustible"
                     />

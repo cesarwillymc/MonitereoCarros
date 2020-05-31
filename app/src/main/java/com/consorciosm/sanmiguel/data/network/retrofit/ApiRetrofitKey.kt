@@ -83,7 +83,7 @@ interface ApiRetrofitKey {
         @Path("id") id:String
     ):Response<RutaProgramada>
     //Get Partes
-    @GET("admin/users")
+    @GET("admin/listParte")
     suspend fun getListPartes(
         @Query("fecha") fecha:String,
         @Query("hora") hora:String?=null
