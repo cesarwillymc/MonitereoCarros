@@ -22,7 +22,7 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/parteDiario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -35,9 +35,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha:"
-        app:layout_constraintBottom_toBottomOf="@+id/searchFecha"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintBottom_toTopOf="@+id/rv_fragment_partes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parteDiario" />
 
     <EditText
         android:id="@+id/searchFecha"
@@ -51,7 +51,7 @@
         android:focusableInTouchMode="false"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toEndOf="@+id/textView29"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintTop_toBottomOf="@+id/parteDiario" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fragment_partes"
@@ -96,11 +96,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
         android:text="Hora"
-        app:layout_constraintBottom_toTopOf="@+id/rv_fragment_partes"
+        app:layout_constraintBottom_toTopOf="@+id/rv_fragment_ordenes_programadas"
         app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintTop_toBottomOf="@+id/parteDiario" />
 
     <EditText
         android:id="@+id/searchHour"
@@ -115,7 +114,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintTop_toBottomOf="@+id/parteDiario" />
 
     <ImageButton
         android:id="@+id/Search"
