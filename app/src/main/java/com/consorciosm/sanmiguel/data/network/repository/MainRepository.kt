@@ -49,9 +49,7 @@ class MainRepository (
         val conexion=firebase.collection("vehiculos").whereEqualTo("state",true).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             if (firebaseFirestoreException==null){
                 val dato=querySnapshot!!.toObjects(PuntosFirebase::class.java)
-                for ((a, variable) in dato.withIndex()){
-                    dato[a].id= querySnapshot.documents[a].id
-                }
+
                 offer(Resource.Success(dato))
             }else{
                 channel.close(Exception("Error al traer datos, revisa tu conexion"))

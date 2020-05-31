@@ -77,7 +77,7 @@ interface ApiRetrofitKey {
         @Path("id") id:String
     ):Response<PersonalData>
 
-    @GET("admin/userinfo/{id}")
+    @GET("admin/recorrido/{id}")
     suspend fun getRecorridoChofer(
         @Path("id") id:String
     ):Response<RutaProgramada>

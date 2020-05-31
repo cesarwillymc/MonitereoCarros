@@ -1,11 +1,15 @@
 package com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo
 
 import android.Manifest
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.consorciosm.sanmiguel.R
@@ -81,6 +85,7 @@ class MonitoreoPreview : BaseFragment(),KodeinAware {
     }
 
     private fun cargarData(data: RutaProgramada) {
+        Log.e("datos",data.toString())
         fmp_txt_color.backgroundColor= data.color.toInt()
         fmp_txt_kilometros.text=data.kilometros
         fmp_txt_name.text= data.nombres
@@ -89,6 +94,7 @@ class MonitoreoPreview : BaseFragment(),KodeinAware {
         val listaPuntos= mutableListOf<LatLng>()
         val inicio=LatLng(data.inicioRecorrido.latitude,data.inicioRecorrido.longitude)
         val final=LatLng(data.finalRecorrido.latitude,data.finalRecorrido.longitude)
+
         for (value in data.recorrido){
             listaPuntos.add(LatLng(value.latitude,value.longitude))
         }
@@ -101,29 +107,33 @@ class MonitoreoPreview : BaseFragment(),KodeinAware {
         final: LatLng
     ) {
 
-        googleMap.addMarker(
-            MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.border_label))
-                .title("Destino")
-                .position(final))
-        googleMap!!.addMarker(
-            MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.border_label))
-                .title("Origen")
-                .position(inicio ))
-        try {
-            val cameramove= LatLngBounds(final,inicio)
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(cameramove,50))
-            Log.e("latLong","origen")
+        try{
+            googleMap.addMarker(
+                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_menu_camera))
+                    .title("Destino")
+                    .position(final))
+            googleMap!!.addMarker(
+                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_menu_camera))
+                    .title("Origen")
+                    .position(inicio ))
+            try {
+                val cameramove= LatLngBounds(final,inicio)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(cameramove,50))
+                Log.e("latLong","origen")
+            }catch (e:Exception){
+                val cameramove= LatLngBounds(inicio,final)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(cameramove,50))
+                Log.e("latLong",e.message)
+            }
+            var lineOptions: PolylineOptions? = PolylineOptions()
+            lineOptions!!.addAll(data)
+            lineOptions.width(10f)
+            lineOptions.color(Color.BLACK)
+            lineOptions.geodesic(true)
+            currentPoline=googleMap!!.addPolyline(lineOptions)
         }catch (e:Exception){
-            val cameramove= LatLngBounds(inicio,final)
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(cameramove,50))
-            Log.e("latLong",e.message)
+            Log.e("Error",e.message)
         }
-        var lineOptions: PolylineOptions? = PolylineOptions()
-        lineOptions!!.addAll(data)
-        lineOptions.width(10f)
-        lineOptions.color(Color.BLACK)
-        lineOptions.geodesic(true)
-        currentPoline=googleMap!!.addPolyline(lineOptions)
 //        googleMap.uiSettings.isTiltGesturesEnabled=false
 //        googleMap.uiSettings.isScrollGesturesEnabled=false
 //        googleMap.uiSettings.isScrollGesturesEnabledDuringRotateOrZoom=false
@@ -136,5 +146,13 @@ class MonitoreoPreview : BaseFragment(),KodeinAware {
 
         googleMap!!.moveCamera(center)
         googleMap!!.animateCamera(zoom)
+    }
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+        return ContextCompat.getDrawable(context, vectorResId)?.run {
+            setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+            val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+            draw(Canvas(bitmap))
+            BitmapDescriptorFactory.fromBitmap(bitmap)
+        }
     }
 }

@@ -3,7 +3,7 @@ package com.consorciosm.sanmiguel.common.constans
 object Constants {
     //Api Url
    // const val BASE_URL_API="https://api-summit-ts.herokuapp.com/api/"
-    const val BASE_URL_API="https://f62a73421de2.ngrok.io/api/"
+    const val BASE_URL_API="https://33cf97c2db4d.ngrok.io/api/"
     const val BASE_URL_AMAZON_IMG="https://summit-puno.s3.us-east-2.amazonaws.com/"
     //Path Files
     const val APP_SETTINGS_PATH_PHOTOS="/storage/emulated/0/summitFood/"

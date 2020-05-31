@@ -1,9 +1,14 @@
 package com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.*
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,10 +23,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import kotlinx.android.synthetic.main.fragment_monitoreo_personal.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -33,7 +35,7 @@ import org.kodein.di.generic.instance
  * A simple [Fragment] subclass.
  */
 @SuppressLint("SetTextI18n")
-class MonitoreoPersonal : BaseFragment() , KodeinAware,GoogleMap.OnMarkerClickListener{
+class MonitoreoPersonal : BaseFragment() , KodeinAware{
     override val kodein: Kodein by kodein()
     private lateinit var viewModel: ViewModelMain
     private val factory: MainViewModelFactory by instance()
@@ -43,6 +45,20 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware,GoogleMap.OnMarkerClickLi
         googleMap!!.isMyLocationEnabled=true
 //        googleMap.uiSettings.isMyLocationButtonEnabled=false
         moveMapCamera()
+        googleMap.setOnInfoWindowClickListener {
+            Toast.makeText(
+                activity,
+                "Infowindow clicked",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        googleMap.setOnMarkerClickListener {
+            Toast.makeText(activity, "Marker Clicked", Toast.LENGTH_SHORT).show()
+            val dato=MonitoreoPersonalDirections.actionNavPersonalToMonitoreoPreview(it!!.tag.toString())
+            findNavController().navigate(dato)
+
+            false
+        }
     }
     override fun getLayout(): Int =R.layout.fragment_monitoreo_personal
 
@@ -61,6 +77,7 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware,GoogleMap.OnMarkerClickLi
                 is Resource.Loading->{ }
                 is Resource.Success->{
                     lbl_vehiculos_fmp.text="  ${it.data.size} Vehiculos Operativos"
+                    Log.e("LoadData",it.data[0].color.toString())
                    cargarData(it.data)
                 }
                 is Resource.Failure->{
@@ -72,22 +89,28 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware,GoogleMap.OnMarkerClickLi
     }
 
     private fun cargarData(data: List<PuntosFirebase>) {
-        try { googleMap.clear() }catch (e:Exception){}
-        val icon = BitmapFactory.decodeResource(
-            requireContext().resources,
-            R.drawable.ic_moto
-        )
-        for (values in data){
-            val marker=googleMap.addMarker(
-                MarkerOptions()
-                    .position(LatLng(values.latitude, values.longitude))
-                    .title(values.placa)
-                    .icon(BitmapDescriptorFactory.fromBitmap(changeBitmapColor(icon,values.color.toInt())))
-            )
-            marker.tag=values.id
-            marker.showInfoWindow()
-        }
+         try{
+             try { googleMap.clear() }catch (e:Exception){
+                 Log.e("markerE",e.message)
+             }
+//             val icon = BitmapFactory.decodeResource(
+//                 requireContext().resources,
+//                 R.drawable.ic_moto
+//             )
+             for (values in data){
+                 val marker=googleMap.addMarker(
+                     MarkerOptions()
+                         .position(LatLng(values.latitude, values.longitude))
+                         .title(values.placa)
+                         .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_moto))
+                 )
+                 marker.tag=values.id
+                 marker.showInfoWindow()
+             }
 
+         }catch (e:Exception){
+             Log.e("error",e.message)
+         }
     }
     private fun changeBitmapColor(sourceBitmap: Bitmap, color: Int): Bitmap? {
         val resultBitmap = sourceBitmap.copy(sourceBitmap.config, true)
@@ -106,11 +129,14 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware,GoogleMap.OnMarkerClickLi
         googleMap.moveCamera(center)
         googleMap.animateCamera(zoom)
     }
-
-    override fun onMarkerClick(p0: Marker?): Boolean {
-        val dato=MonitoreoPersonalDirections.actionNavPersonalToMonitoreoPreview(p0!!.tag.toString())
-        findNavController().navigate(dato)
-        return true
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+        return ContextCompat.getDrawable(context, vectorResId)?.run {
+            setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+            val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+            draw(Canvas(bitmap))
+            BitmapDescriptorFactory.fromBitmap(bitmap)
+        }
     }
+
 
 }

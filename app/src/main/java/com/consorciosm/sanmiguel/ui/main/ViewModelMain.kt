@@ -136,7 +136,7 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
     //Maps
 
     //Load Mapas Cars
-    val markersTimeReal = liveData {
+    val markersTimeReal = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
             repo.getPositionsConductores().collect {
