@@ -4,32 +4,16 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_registro"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Usuarios" />
-        <item
-            android:id="@+id/nav_registro_vehiculo"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Vehiculos" />
-        <item
-            android:id="@+id/nav_partes"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Partes diarios" />
-        <item
-            android:id="@+id/nav_permisos"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Ordenes Programadas" />
-        <item
             android:id="@+id/nav_personal"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Monitoreo Personal" />
+            android:icon="@drawable/ic_monitoreo"
+            android:title="Monitoreo " />
         <item
             android:id="@+id/nav_validacion"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Validacion registros diarios" />
+            android:icon="@drawable/ic_check"
+            android:title="Validacion " />
         <item
             android:id="@+id/nav_perfil"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_person_black_24dp"
             android:title="Mi perfil" />
 
     </group>

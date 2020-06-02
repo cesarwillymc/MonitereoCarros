@@ -1119,7 +1119,17 @@
                     android:textStyle="bold"
                     android:textSize="22sp"
                     android:background="#000"/>
-
+                <Button
+                    android:layout_margin="5dp"
+                    android:id="@+id/descargarParte"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descargar Parte"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:textSize="22sp"
+                    android:background="#000"/>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

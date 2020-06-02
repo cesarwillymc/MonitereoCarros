@@ -10,3 +10,12 @@ data class UsuarioList (
 
 
 
+
+data class ConductoresSinOrdenes (
+    val _idConductor:String,
+    val _idVehiculo:String,
+    val nombres:String,
+    val apellidos:String,
+    val placa:String
+)
+

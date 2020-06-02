@@ -40,7 +40,7 @@ class Conductores : BaseFragment(), UsuarioListener, KodeinAware,SpinnerListener
             ViewModelProvider(this, factory).get(ViewModelMain::class.java)
         }
 
-        val colors = listOf("all", "Sin Vehiculo", "Con Vehiculo")
+        val colors = listOf("Todos", "Sin Vehiculo", "Con Vehiculo")
         val datos = SpinnerAdapter(this,
             requireContext()
         )

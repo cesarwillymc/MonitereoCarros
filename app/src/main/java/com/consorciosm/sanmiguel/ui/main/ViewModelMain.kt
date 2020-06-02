@@ -19,13 +19,65 @@ import java.io.File
 import java.util.HashMap
 
 class ViewModelMain(private val repo: MainRepository) :ViewModel(){
+
+    //Supervisor
+    val obtenerNotificacionesCantidad= liveData {
+        try{
+            repo.obtenerNotificacionesCantidad().collect {
+                emit(it)
+            }
+        }catch (e:Exception){
+            Log.e("error",e.message)
+        }
+    }
     val getLoggetUser = repo.getUser()
+
+    fun createOrdenProgramada(ordenProgramada:OrdenProgramada):LiveData<Resource<Unit>> = liveData {
+        Log.e("Datos Enviados",ordenProgramada.toString())
+        emit(Resource.Loading())
+        try{
+            repo.createOrdenProgramada(ordenProgramada)
+            repo.IncrementValueNotification()
+            emit(Resource.Success(Unit))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+
+    fun createNotificacion(ordenProgramada:Notificacion):LiveData<Resource<Unit>> = liveData {
+        Log.e("Datos Enviados",ordenProgramada.toString())
+        emit(Resource.Loading())
+        try{
+            repo.createNotificacion(ordenProgramada)
+            repo.IncrementValueNotificationConductor(ordenProgramada._idDestinatario)
+            emit(Resource.Success(Unit))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    fun updaterdenProgramada(ordenProgramada:OrdenProgramada,id: String):LiveData<Resource<Unit>> = liveData {
+        Log.e("Datosupdate",ordenProgramada.toString())
+        emit(Resource.Loading())
+        try{
+            repo.updateOrdenProgramada(ordenProgramada,id)
+            emit(Resource.Success(Unit))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+
+
+
+
+
+
     fun deleteUser()= repo.deleteUser()
     fun updateUserDB(item: Usuario)=repo.updateUserAppDb(item)
     fun createPersonal(personal:PersonalData):LiveData<Resource<Unit>> = liveData {
         emit(Resource.Loading())
         try{
-            repo.createPersonal(personal)
+            val dato=repo.createPersonal(personal)
+            repo.CreateContadorNotifyUser(dato.message)
             emit(Resource.Success(Unit))
         }catch (e:Exception){
             emit(Resource.Failure(e) )
@@ -182,6 +234,65 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
+    fun getListNotificaciones(pagina:Int):LiveData<Resource<List<NotificacionesList>>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getListNotificaciones(pagina)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    fun getListNotificacionesSupervisor(pagina:Int):LiveData<Resource<List<NotificacionesList>>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getListNotificacionesSupervisor(pagina)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+
+    fun validateOrden(id:String):LiveData<Resource<ResponseGeneral>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.validateOrden(id)
+            repo.IncrementValueNotificationConductor(dato.message)
+            repo.DecrementValueNotification()
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    fun getNotificationById(id:String):LiveData<Resource<OrdenProgramada>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getListNotificacionesById(id)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    fun getNotificationByIdSupervisor(id:String):LiveData<Resource<OrdenProgramada>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getNotificationByIdSupervisor(id)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    //GetConfuctores With Placa
+    fun ConductoresSinOrdenes():LiveData<Resource<List<ConductoresSinOrdenes>>>  = liveData (Dispatchers.IO){
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getConductoresSinOrdenes()
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+
 //    @ExperimentalStdlibApi
 //    fun getRutaMapa(origin: LatLng, dest: LatLng):LiveData<Resource<ArrayList<LatLng>>> = liveData(Dispatchers.IO){
 //        emit(Resource.Loading())

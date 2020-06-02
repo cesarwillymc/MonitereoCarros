@@ -13,6 +13,27 @@ import retrofit2.http.*
 
 interface ApiRetrofitKey {
 
+
+
+    @POST("admin/orden")
+    suspend fun createOrdenProgramada(
+        @Body orden: OrdenProgramada
+    ): Response<ResponseGeneral>
+    @POST("admin/sendMenssage/{id}")
+    suspend fun createNotificacion(
+        @Body orden: Notificacion,
+        @Path("id") id :String
+    ): Response<ResponseGeneral>
+
+
+
+    @PUT("admin/orden/{id}")
+    suspend fun updateOrdenProgramada(
+        @Body orden: OrdenProgramada,
+        @Path("id") id :String
+    ): Response<ResponseGeneral>
+
+
     @POST("admin/registro")
     suspend fun createUser(
         @Body usuario: requestSignUp
@@ -72,6 +93,9 @@ interface ApiRetrofitKey {
     suspend fun getListUser(
         @Query("vehiculo") vehiculo:Boolean?=null
     ):Response<List<UsuarioList>>
+    @GET("admin/listChoferByPlaca")
+    suspend fun getConductoresSinOrdenes(
+    ):Response<List<ConductoresSinOrdenes>>
     @GET("admin/userinfo/{id}")
     suspend fun getUserId(
         @Path("id") id:String
@@ -100,6 +124,29 @@ interface ApiRetrofitKey {
 //    suspend fun callMaps(
 //        @Url url: String?
 //    ): Response<ResponseMaps>
+    @GET("admin/getLisOrdenes")
+    suspend fun getListNotificaciones(
+        @Query("pagina") pagina:Int
+    ):Response<List<NotificacionesList>>
+
+    @GET("admin/orden/{id}")
+    suspend fun getListNotificacionesById(
+        @Path("id") id:String
+    ):Response<OrdenProgramada>
+    //Supervisor datos
+    @GET("supervisor/listOrdenes")
+    suspend fun getListNotificacionesSupervisor(
+        @Query("pagina") pagina:Int
+    ):Response<List<NotificacionesList>>
+    @GET("supervisor/orden/{id}")
+    suspend fun getNotificationByIdSupervisor(
+        @Path("id") id:String
+    ):Response<OrdenProgramada>
+    @POST("supervisor/valideOrden/{id}")
+    suspend fun validateOrden(
+        @Path("id") id:String
+    ):Response<ResponseGeneral>
+
     companion object{
         operator fun invoke() : ApiRetrofitKey{
             val okHttpClienteBuilder= OkHttpClient.Builder().addInterceptor(InterceptorToken()).build()

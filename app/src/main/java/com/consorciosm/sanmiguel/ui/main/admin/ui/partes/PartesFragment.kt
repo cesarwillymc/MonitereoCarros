@@ -2,6 +2,8 @@ package com.consorciosm.sanmiguel.ui.main.admin.ui.partes
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
@@ -68,6 +70,7 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
 //            showDialog()
         }
 
+
     }
     fun LoadList(){
         val horas=""
@@ -93,7 +96,7 @@ class PartesFragment : BaseFragment(),KodeinAware,PartesListener, TimePickerDial
         })
     }
     override fun listener(partesList: PartesList, position: Int) {
-       val  nav =PartesFragmentDirections.actionNavPartesToPartePreview(partesList.id)
+       val  nav =PartesFragmentDirections.actionNavPartesToPartePreview(partesList.id,partesList.accept)
         findNavController().navigate(nav)
     }
 

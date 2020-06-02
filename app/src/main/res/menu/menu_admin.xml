@@ -2,31 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_registro_a"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Registro nuevo usuario" />
+            android:id="@+id/nav_registro"
+            android:icon="@drawable/ic_supervisor"
+            android:title="Usuarios" />
         <item
-            android:id="@+id/nav_registro_vehiculo_a"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Registro nuevo vehiculo" />
+            android:id="@+id/nav_registro_vehiculo"
+            android:icon="@drawable/ic_car"
+            android:title="Vehiculos" />
         <item
-            android:id="@+id/nav_partes_a"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_partes"
+            android:icon="@drawable/ic_event"
             android:title="Partes diarios" />
         <item
-            android:id="@+id/nav_permisos_a"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_ordenes"
+            android:icon="@drawable/ic_transfer"
             android:title="Ordenes Programadas" />
         <item
-            android:id="@+id/nav_personal_a"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_personal"
+            android:icon="@drawable/ic_monitoreo"
             android:title="Monitoreo Personal" />
         <item
-            android:id="@+id/nav_perfil_a"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_person_black_24dp"
             android:title="Mi perfil" />
 
     </group>

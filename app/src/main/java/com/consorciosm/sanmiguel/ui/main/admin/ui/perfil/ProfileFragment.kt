@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseFragment
 import com.consorciosm.sanmiguel.common.shared.SharedPreferencsManager.Companion.clearAllManagerShared
@@ -36,6 +37,9 @@ class ProfileFragment : BaseFragment(),KodeinAware {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
+        }
+        img_notify.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavPerfilToSendNotify2())
         }
     }
 

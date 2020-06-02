@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_supervisor"
-    app:startDestination="@id/nav_partes">
+    app:startDestination="@id/nav_personal">
 
     <fragment
         android:id="@+id/registro_carro"
@@ -54,20 +54,31 @@
             app:destination="@id/monitoreoPreview" />
     </fragment>
     <fragment
-        android:id="@+id/nav_permisos"
+        android:id="@+id/ordenes"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.ordenes.OrdernesProgramadas"
         android:label="Crear  Ruta Programada"
-        tools:layout="@layout/fragment_ordernes_programadas" />
+        tools:layout="@layout/fragment_programar_salida" >
+        <argument
+            android:name="new"
+            app:argType="boolean"
+            android:defaultValue="true" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="isValid"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
     <fragment
         android:id="@+id/nav_perfil"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.perfil.ProfileFragment"
-        android:label="Cerrar Sesion"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/nav_validacion"
-        android:name="com.consorciosm.sanmiguel.ui.main.supervisor.notificaciones.NotificacionesFragment"
-        android:label="Validacion de Ordenes programadas"
-        tools:layout="@layout/fragment_notificaciones" />
+        android:label="Mi perfil"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_nav_perfil_to_sendNotify2"
+            app:destination="@id/sendNotify2" />
+    </fragment>
     <fragment
         android:id="@+id/nav_registro"
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.registro_personal.Conductores"
@@ -103,5 +114,44 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <argument
+            android:name="isValid"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_ordenes"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.ordenes.NotificacionesFragment"
+        tools:layout="@layout/fragment_notificaciones" >
+        <action
+            android:id="@+id/action_nav_ordenes_to_ordenes"
+            app:destination="@id/ordenes" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_validacion"
+        android:name="com.consorciosm.sanmiguel.ui.main.supervisor.notificaciones.ValidacionesOrdenes"
+        android:label="Lista de ordenes"
+        tools:layout="@layout/fragment_validaciones_ordenes">
+        <action
+            android:id="@+id/action_nav_validacion_to_validacionPreview"
+            app:destination="@id/validacionPreview" />
+    </fragment>
+    <fragment
+        android:id="@+id/validacionPreview"
+        android:name="com.consorciosm.sanmiguel.ui.main.supervisor.notificaciones.ValidacionPreview"
+        android:label="Orden Programada"
+        tools:layout="@layout/fragment_validacion_preview">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="isValid"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendNotify2"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.perfil.SendNotify"
+        android:label="Enviar notificacion"
+        tools:layout="@layout/fragment_send_notify" />
 </navigation>

@@ -34,7 +34,7 @@ class carrosFragment : BaseFragment(),KodeinAware ,CarrosListener,SpinnerListene
         viewModel= requireActivity().run {
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
-        val colors = listOf("all","Sin Conductores","Con Conductores")
+        val colors = listOf("Todos","Sin Conductores","Con Conductores")
 
         val datos = SpinnerAdapter(this,
             requireContext()

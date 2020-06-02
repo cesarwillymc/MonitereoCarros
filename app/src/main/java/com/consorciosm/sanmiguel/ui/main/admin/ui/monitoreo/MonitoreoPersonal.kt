@@ -76,9 +76,14 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
             when(it){
                 is Resource.Loading->{ }
                 is Resource.Success->{
-                    lbl_vehiculos_fmp.text="  ${it.data.size} Vehiculos Operativos"
-                    Log.e("LoadData",it.data[0].color.toString())
-                   cargarData(it.data)
+                    try {
+                        lbl_vehiculos_fmp.text="  ${it.data.size} Vehiculos Operativos"
+                        Log.e("LoadData",it.data[0].color.toString())
+                        cargarData(it.data)
+                    }catch (e:Exception){
+
+                    }
+
                 }
                 is Resource.Failure->{
                     snakBar(it.exception.message!! + " Reinicia la app")

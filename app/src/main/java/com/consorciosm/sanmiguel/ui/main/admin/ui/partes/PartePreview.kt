@@ -1,5 +1,7 @@
 package com.consorciosm.sanmiguel.ui.main.admin.ui.partes
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseFragment
+import com.consorciosm.sanmiguel.common.constans.Constants
 import com.consorciosm.sanmiguel.common.constans.Constants.BASE_URL_AMAZON_IMG
 import com.consorciosm.sanmiguel.common.utils.Resource
 import com.consorciosm.sanmiguel.data.model.Parte
@@ -32,6 +35,9 @@ class PartePreview:BaseFragment(),KodeinAware {
         viewModel= requireActivity().run {
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
+        if(PartePreviewArgs.fromBundle(requireArguments()).isValid){
+            descargarParte.visibility=View.VISIBLE
+        }
         id= PartePreviewArgs.fromBundle(requireArguments()).id
         viewModel.getparteId(id).observe(viewLifecycleOwner, Observer {
             when(it){
@@ -51,6 +57,9 @@ class PartePreview:BaseFragment(),KodeinAware {
         })
         sendParte.setOnClickListener {
             validarParte()
+        }
+        descargarParte.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${Constants.BASE_URL_AMAZON_S3}sanmiguel/parte/$id.pdf")))
         }
     }
 
