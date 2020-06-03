@@ -77,6 +77,11 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
                 is Resource.Loading->{ }
                 is Resource.Success->{
                     try {
+                        if (it.data.isEmpty()){
+                            try { googleMap.clear() }catch (e:Exception){
+                                Log.e("markerE",e.message)
+                            }
+                        }
                         lbl_vehiculos_fmp.text="  ${it.data.size} Vehiculos Operativos"
                         Log.e("LoadData",it.data[0].color.toString())
                         cargarData(it.data)

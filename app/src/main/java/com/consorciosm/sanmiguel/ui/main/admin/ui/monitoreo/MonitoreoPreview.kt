@@ -109,11 +109,11 @@ class MonitoreoPreview : BaseFragment(),KodeinAware {
 
         try{
             googleMap.addMarker(
-                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_menu_camera))
+                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_person_pin))
                     .title("Destino")
                     .position(final))
             googleMap!!.addMarker(
-                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_menu_camera))
+                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_person_pin))
                     .title("Origen")
                     .position(inicio ))
             try {
