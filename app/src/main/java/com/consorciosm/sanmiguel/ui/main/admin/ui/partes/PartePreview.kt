@@ -72,6 +72,7 @@ class PartePreview:BaseFragment(),KodeinAware {
                 is Resource.Success->{
                     snakBar(" El parte se valido correctamente")
                     login_progressbar.visibility= View.GONE
+                    descargarParte.visibility= View.VISIBLE
                 }
                 is Resource.Failure->{
                     snakBar(" ${it.exception.message}")

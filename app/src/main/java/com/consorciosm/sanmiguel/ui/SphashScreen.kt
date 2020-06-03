@@ -11,6 +11,7 @@ import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseActivity
 import com.consorciosm.sanmiguel.common.constans.Constants
 import com.consorciosm.sanmiguel.common.constans.Constants.PREF_ID_USER
+import com.consorciosm.sanmiguel.common.constans.Constants.ROLE_SUPER
 import com.consorciosm.sanmiguel.common.shared.SharedPreferencsManager
 import com.consorciosm.sanmiguel.common.shared.SharedPreferencsManager.Companion.getSomeStringValue
 import com.consorciosm.sanmiguel.ui.auth.AuthViewModel
@@ -18,6 +19,7 @@ import com.consorciosm.sanmiguel.ui.auth.AuthViewModelFactory
 import com.consorciosm.sanmiguel.ui.auth.view.LoginActivity
 import com.consorciosm.sanmiguel.ui.main.admin.InicioMain
 import com.consorciosm.sanmiguel.ui.main.supervisor.SupervisorActivity
+import com.consorciosm.sanmiguel.ui.main.supervisor.validateAccount.ValidateUser
 import kotlinx.android.synthetic.main.activity_sphash_screen.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -56,6 +58,9 @@ class SphashScreen : BaseActivity(),KodeinAware {
                 when(it.role){
                     Constants.ROLE_SUPERVISOR -> navMainSupervisor()
                     Constants.ROLE_ADMINISTRADOR ->navMainAdmin()
+                    ROLE_SUPER->{
+                        navSuperAdmin()
+                    }
                     else->{
                         snakBar("Contactate con un supervisor")
                         logout()
@@ -66,7 +71,11 @@ class SphashScreen : BaseActivity(),KodeinAware {
             }
         })
     }
-
+    private fun navSuperAdmin() {
+        val intent = Intent(this, ValidateUser::class.java)
+        startActivity(intent)
+        finish()
+    }
     private fun logout(){
         viewModel.deleteUser()
         SharedPreferencsManager.clearAllManagerShared()

@@ -55,16 +55,6 @@ class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetL
         googleMap.uiSettings.isMyLocationButtonEnabled=false
         moveMapCamera()
     }
-//val points=it.data
-//                            Log.e("lineasMapbox",points.toString())
-//                                var lineOptions: PolylineOptions? = PolylineOptions()
-//                                lineOptions!!.addAll(points!!)
-//                                lineOptions.width(10f)
-//                                lineOptions.color(Color.BLACK)
-//                                lineOptions.geodesic(true)
-//                                currentPoline=googleMap!!.addPolyline(lineOptions)
-//                                val cameramove= LatLngBounds(originLatlng,destinationLatlng)
-//                                googleMap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(cameramove,50))
 
 
     override fun getLayout(): Int = R.layout.fragment_monitoreo_preview
@@ -75,7 +65,6 @@ class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetL
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
         fecha.setText(fechaModel())
-        fechaFinal.setText(fechaModel())
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(callback)
         idConductor=MonitoreoPreviewArgs.fromBundle(requireArguments()).id
@@ -84,11 +73,13 @@ class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetL
             identificador="inicio"
             showDialogPicker()
         }
-        fechaFinal.setOnClickListener {
-            identificador="final"
-            showDialogPicker()
-        }
+//        fechaFinal.setOnClickListener {
+//            identificador="final"
+//            showDialogPicker()
+//        }
+        buscarProDatos()
         searchFecha.setOnClickListener {
+
             buscarProDatos()
         }
 
@@ -99,6 +90,7 @@ class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetL
         viewModel.getDataRecorridoConductor(idConductor,inicio,final).observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{
+                    hideKeyboard()
                     progressbar.visibility=View.VISIBLE
                 }
                 is Resource.Success->{

@@ -2,8 +2,8 @@ package com.consorciosm.sanmiguel.common.constans
 
 object Constants {
     //Api Url
-   // const val BASE_URL_API="https://api-summit-ts.herokuapp.com/api/"
-    const val BASE_URL_API="https://68107736f08a.ngrok.io/api/"
+    const val BASE_URL_API="https://api-sm-miguel.herokuapp.com/api/"
+   // const val BASE_URL_API="https://020a5160adab.ngrok.io/api/"
     const val BASE_URL_AMAZON_IMG="https://summit-puno.s3.us-east-2.amazonaws.com/"
     const val BASE_URL_AMAZON_S3="https://summit-puno.s3.us-east-2.amazonaws.com/"
     //Path Files
@@ -31,4 +31,5 @@ object Constants {
     //Roles
     const val ROLE_SUPERVISOR ="supervisor"
     const val ROLE_ADMINISTRADOR ="administrador"
+    const val ROLE_SUPER ="superadmin"
 }

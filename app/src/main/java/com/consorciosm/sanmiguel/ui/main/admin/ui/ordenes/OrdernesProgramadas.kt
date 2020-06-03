@@ -170,7 +170,8 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
         val autorizadoa=lbl_order_autorizadoa.text.toString().trim()
         val autorizadoacargo=lbl_order_autorizadoacargo.text.toString().trim()
         val codigo=lbl_order_codigo.text.toString().trim()
-
+        val autorizadoporCargo= lbl_order_autorizadoporcargo.text.toString().trim()
+        val autorizadopor= lbl_autorizado_por_fnd.text.toString().trim()
         val conductor=lbl_order_conductor.selectedItem.toString()
         val destinosalida=lbl_order_destinosalida.text.toString().trim()
         val fechasolicitud=lbl_order_fechasolicitud.text.toString().trim()
@@ -186,7 +187,7 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
         val retornoorigen= lbl_order_retornoorigen.text.toString().trim()
         val tiempoestimado= lbl_order_tiempoestimado.text.toString().trim()
         val version= lbl_order_version.text.toString().trim()
-        val Dato= OrdenProgramada(aprobado,autorizadoa,autorizadoacargo,"","",placa,codigo,
+        val Dato= OrdenProgramada(aprobado,autorizadoa,autorizadoacargo,autorizadopor,autorizadoporCargo,placa,codigo,
             conductor,fechasolicitud,formulario,observaciones,ocupantes,proyecto,retornodestino,fechaRetorno,horaRetorno,retornoorigen,
             destinosalida,fechaSalida,horaSalida,origensalida,tiempoestimado,version,idConductor)
         viewModel.updaterdenProgramada(Dato,id).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -214,7 +215,8 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
         val autorizadoa=lbl_order_autorizadoa.text.toString().trim()
         val autorizadoacargo=lbl_order_autorizadoacargo.text.toString().trim()
         val codigo=lbl_order_codigo.text.toString().trim()
-
+        val autorizadoporCargo= lbl_order_autorizadoporcargo.text.toString().trim()
+        val autorizadopor= lbl_autorizado_por_fnd.text.toString().trim()
         val conductor=lbl_order_conductor.selectedItem.toString()
         val destinosalida=lbl_order_destinosalida.text.toString().trim()
         val fechasolicitud=lbl_order_fechasolicitud.text.toString().trim()
@@ -230,7 +232,7 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
         val retornoorigen= lbl_order_retornoorigen.text.toString().trim()
         val tiempoestimado= lbl_order_tiempoestimado.text.toString().trim()
         val version= lbl_order_version.text.toString().trim()
-        val Dato= OrdenProgramada(aprobado,autorizadoa,autorizadoacargo,"","",placa,codigo,
+        val Dato= OrdenProgramada(aprobado,autorizadoa,autorizadoacargo,autorizadopor,autorizadoporCargo,placa,codigo,
             conductor,fechasolicitud,formulario,observaciones,ocupantes,proyecto,retornodestino,fechaRetorno,horaRetorno,retornoorigen,
             destinosalida,fechaSalida,horaSalida,origensalida,tiempoestimado,version,idConductor)
         viewModel.createOrdenProgramada(Dato).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -276,6 +278,7 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
         val retornoorigen= lbl_order_retornoorigen.text.toString().trim()
         val tiempoestimado= lbl_order_tiempoestimado.text.toString().trim()
         val version= lbl_order_version.text.toString().trim()
+
         if (autorizadopor.isEmpty()){
             lbl_order_aitorizadopor.error="Este campo esta vacio"
             lbl_order_aitorizadopor.requestFocus()

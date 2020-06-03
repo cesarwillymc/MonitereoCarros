@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
-            android:text="Ingresa tu correo electronico "
+            android:text="Ingresa tu DNI"
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
 

@@ -46,6 +46,7 @@
         <activity android:name=".ui.auth.view.RegisterActivity" />
         <activity android:name=".ui.auth.view.LoginActivity" />
         <activity android:name=".ui.main.admin.InicioMain" />
+        <activity android:name=".ui.main.supervisor.validateAccount.ValidateUser" />
     </application>
 
 </manifest>

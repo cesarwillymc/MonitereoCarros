@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseActivity
 import com.consorciosm.sanmiguel.common.constans.Constants.ROLE_ADMINISTRADOR
+import com.consorciosm.sanmiguel.common.constans.Constants.ROLE_SUPER
 import com.consorciosm.sanmiguel.common.constans.Constants.ROLE_SUPERVISOR
 import com.consorciosm.sanmiguel.common.shared.SharedPreferencsManager.Companion.clearAllManagerShared
 import com.consorciosm.sanmiguel.common.utils.Resource
@@ -19,6 +20,7 @@ import com.consorciosm.sanmiguel.ui.auth.AuthViewModel
 import com.consorciosm.sanmiguel.ui.auth.AuthViewModelFactory
 import com.consorciosm.sanmiguel.ui.main.admin.InicioMain
 import com.consorciosm.sanmiguel.ui.main.supervisor.SupervisorActivity
+import com.consorciosm.sanmiguel.ui.main.supervisor.validateAccount.ValidateUser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -51,6 +53,7 @@ class LoginActivity : BaseActivity(), KodeinAware {
                     when(it.role){
                         ROLE_SUPERVISOR-> navMainSupervisor()
                         ROLE_ADMINISTRADOR->navMainAdmin()
+                        ROLE_SUPER->navSuperAdmin()
                         else->{
                             snakBar("Contactate con un supervisor")
                             logout()
@@ -65,6 +68,13 @@ class LoginActivity : BaseActivity(), KodeinAware {
             }
         })
     }
+
+    private fun navSuperAdmin() {
+        val intent = Intent(this, ValidateUser::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     private fun logout(){
         viewModel.deleteUser()
         clearAllManagerShared()
@@ -83,7 +93,7 @@ class LoginActivity : BaseActivity(), KodeinAware {
 
     private fun userLogin(email:String,pass:String) {
         if (email.isEmpty()){
-            al_edtxt_gmail.error="Tu correo esta vacio"
+            al_edtxt_gmail.error="Tu dni esta vacio"
             return
         }
         if (pass.isEmpty()){
@@ -91,7 +101,7 @@ class LoginActivity : BaseActivity(), KodeinAware {
             return
         }
         if (!viewModel.IsValidNumberDoc(email)){
-            al_edtxt_gmail.error="El correo no es valido"
+            al_edtxt_gmail.error="El dni no es valido"
             return
         }
         viewModel.SignIn(email,pass).observe(this, Observer {

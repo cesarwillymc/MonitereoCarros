@@ -77,6 +77,7 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
                 is Resource.Loading->{ }
                 is Resource.Success->{
                     try {
+
                         if (it.data.isEmpty()){
                             try { googleMap.clear() }catch (e:Exception){
                                 Log.e("markerE",e.message)

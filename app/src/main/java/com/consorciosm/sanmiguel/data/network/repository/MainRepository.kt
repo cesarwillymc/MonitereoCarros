@@ -87,6 +87,11 @@ class MainRepository (
         firebase.collection("notify").document(id).update("cantidad",FieldValue.increment(1))
     }
     suspend fun CreateContadorNotifyUser(id: String){
-        firebase.collection("notify").document(id).update("cantidad",0)
+        firebase.collection("notify").document(id).set(Varible(0))
     }
+    suspend fun getValidateAdmin()= apiRequest { api.getValidateAdmin() }
+    suspend fun updateUsuariosSuperAdmin(id:String,role:String)= apiRequest { api.updateUsuariosSuperAdmin(id,role) }
 }
+data class Varible(
+    val cantidad:Int
+)

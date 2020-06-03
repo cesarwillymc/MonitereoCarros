@@ -2,6 +2,7 @@ package com.consorciosm.sanmiguel.data.network.retrofit
 
 import com.consorciosm.sanmiguel.common.constans.Constants.BASE_URL_API
 import com.consorciosm.sanmiguel.data.model.*
+import com.consorciosm.sanmiguel.ui.main.supervisor.validateAccount.ValidateUsuarios
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -104,8 +105,8 @@ interface ApiRetrofitKey {
     @GET("admin/recorrido/{id}")
     suspend fun getRecorridoChofer(
         @Path("id") id: String,
-        @Query("inicio")inicio: String,
-        @Query("final")final: String
+        @Query("fecha")inicio: String,
+        @Query("cantidad")final: String
     ):Response<RutaProgramada>
     //Get Partes
     @GET("admin/listParte")
@@ -148,6 +149,17 @@ interface ApiRetrofitKey {
         @Path("id") id:String
     ):Response<ResponseGeneral>
 
+
+
+    //SuperAdmin
+    @GET("superadmin/sinRole")
+    suspend fun getValidateAdmin():Response<List<ValidateUsuarios>>
+    @FormUrlEncoded
+    @PUT("superadmin/setRole/{id}")
+    suspend fun updateUsuariosSuperAdmin(
+        @Path("id") id:String,
+        @Field("role") role:String
+    ):Response<ResponseGeneral>
     companion object{
         operator fun invoke() : ApiRetrofitKey{
             val okHttpClienteBuilder= OkHttpClient.Builder().addInterceptor(InterceptorToken()).build()
