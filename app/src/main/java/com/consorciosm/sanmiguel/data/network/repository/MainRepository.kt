@@ -1,29 +1,17 @@
 package com.consorciosm.sanmiguel.data.network.repository
 
-import android.util.Log
 import com.consorciosm.sanmiguel.common.utils.Resource
 import com.consorciosm.sanmiguel.common.utils.SafeApiRequest
 import com.consorciosm.sanmiguel.data.local.db.AppDB
 import com.consorciosm.sanmiguel.data.model.*
 import com.consorciosm.sanmiguel.data.network.retrofit.ApiRetrofitKey
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.suspendAtomicCancellableCoroutine
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.HashMap
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 class MainRepository (
     private val db: AppDB,
@@ -53,7 +41,11 @@ class MainRepository (
     suspend fun getListCarros(value:Boolean?)= apiRequest { api.getListCarros(value) }
     suspend fun getInfoCarro(value:String)= apiRequest { api.getCarroId(value) }
     suspend fun getInfoUser(value:String)= apiRequest { api.getUserId(value) }
-    suspend fun getRecorridoChoferId(value:String)= apiRequest { api.getRecorridoChofer(value) }
+    suspend fun getRecorridoChoferId(
+        value: String,
+        inicio: String,
+        final: String
+    )= apiRequest { api.getRecorridoChofer(value,inicio,final) }
 //    suspend fun getStringPoline( url:String) = apiRequest { api.callMaps(url) }.routes
     suspend fun getListNotificaciones(pagina:Int)= apiRequest { api.getListNotificaciones(pagina) }
     suspend fun getListNotificacionesSupervisor(pagina:Int)= apiRequest { api.getListNotificacionesSupervisor(pagina) }

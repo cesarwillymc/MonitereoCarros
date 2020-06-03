@@ -8,15 +8,12 @@ import com.consorciosm.sanmiguel.common.utils.Resource
 import com.consorciosm.sanmiguel.common.utils.detectar_formato
 import com.consorciosm.sanmiguel.data.model.*
 import com.consorciosm.sanmiguel.data.network.repository.MainRepository
-import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-import java.util.HashMap
 
 class ViewModelMain(private val repo: MainRepository) :ViewModel(){
 
@@ -225,10 +222,10 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e))
         }
     }
-    fun getDataRecorridoConductor(id:String):LiveData<Resource<RutaProgramada>> = liveData {
+    fun getDataRecorridoConductor(id: String, inicio: String, final: String):LiveData<Resource<RutaProgramada>> = liveData {
         emit(Resource.Loading())
         try{
-            val dato=repo.getRecorridoChoferId(id)
+            val dato=repo.getRecorridoChoferId(id,inicio,final)
             emit(Resource.Success(dato))
         }catch (e:Exception){
             emit(Resource.Failure(e) )

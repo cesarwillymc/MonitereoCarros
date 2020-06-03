@@ -105,7 +105,7 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
             }
         }
         fps_descargar.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${BASE_URL_AMAZON_S3}sanmiguel/ordenProgramada/$id.pdf")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${BASE_URL_AMAZON_S3}sanMiguel/ordenes/$id.pdf")))
         }
         lbl_order_fechasalida.setOnClickListener {
             tipe="salida"

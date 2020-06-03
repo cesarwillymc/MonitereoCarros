@@ -59,7 +59,7 @@ class PartePreview:BaseFragment(),KodeinAware {
             validarParte()
         }
         descargarParte.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${Constants.BASE_URL_AMAZON_S3}sanmiguel/parte/$id.pdf")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${Constants.BASE_URL_AMAZON_S3}sanMiguel/partes/$id.pdf")))
         }
     }
 

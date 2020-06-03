@@ -1,6 +1,7 @@
 package com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo
 
 import android.Manifest
+import android.app.DatePickerDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -9,6 +10,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,14 +32,22 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import java.util.*
 
-class MonitoreoPreview : BaseFragment(),KodeinAware {
+class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetListener  {
     override val kodein: Kodein by kodein()
     private lateinit var viewModel: ViewModelMain
     private val factory: MainViewModelFactory by instance()
     lateinit var googleMap:GoogleMap
     private var currentPoline: Polyline?=null
     private var idConductor=""
+
+
+
+    var anio= Calendar.getInstance().get(Calendar.YEAR)
+    var mes= Calendar.getInstance().get(Calendar.MONTH)
+    var dia= Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+
     private val callback = OnMapReadyCallback { googleMap ->
         this.googleMap=googleMap
         requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
@@ -58,16 +68,35 @@ class MonitoreoPreview : BaseFragment(),KodeinAware {
 
 
     override fun getLayout(): Int = R.layout.fragment_monitoreo_preview
-
+    var identificador=""
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= requireActivity().run {
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
+        fecha.setText(fechaModel())
+        fechaFinal.setText(fechaModel())
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(callback)
         idConductor=MonitoreoPreviewArgs.fromBundle(requireArguments()).id
-        viewModel.getDataRecorridoConductor(idConductor).observe(viewLifecycleOwner, Observer {
+
+        fecha.setOnClickListener {
+            identificador="inicio"
+            showDialogPicker()
+        }
+        fechaFinal.setOnClickListener {
+            identificador="final"
+            showDialogPicker()
+        }
+        searchFecha.setOnClickListener {
+            buscarProDatos()
+        }
+
+    }
+    fun buscarProDatos(){
+        val inicio= fecha.text.toString().trim()
+        val final= fechaFinal.text.toString().trim()
+        viewModel.getDataRecorridoConductor(idConductor,inicio,final).observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{
                     progressbar.visibility=View.VISIBLE
@@ -83,7 +112,6 @@ class MonitoreoPreview : BaseFragment(),KodeinAware {
             }
         })
     }
-
     private fun cargarData(data: RutaProgramada) {
         Log.e("datos",data.toString())
         fmp_txt_color.backgroundColor= data.color.toInt()
@@ -154,5 +182,37 @@ class MonitoreoPreview : BaseFragment(),KodeinAware {
             draw(Canvas(bitmap))
             BitmapDescriptorFactory.fromBitmap(bitmap)
         }
+    }
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        anio=year
+        mes=month
+        dia=dayOfMonth
+        if(identificador=="inicio"){
+            fecha.setText(fechaModel())
+        }else{
+            fechaFinal.setText(fechaModel())
+        }
+
+    }
+    private fun fechaModel():String{
+        var fechaParte="$anio-${mes+1}-$dia"
+        if (mes+1<10){
+            fechaParte = if (dia<10)
+                "$anio-0${mes+1}-0$dia"
+            else
+                "$anio-0${mes+1}-$dia"
+        }else{
+            if (dia<10)
+                fechaParte="$anio-${mes+1}-0$dia"
+        }
+        return fechaParte
+    }
+
+    private fun showDialogPicker() {
+        val datepicker= DatePickerDialog(requireContext(),this,
+            anio,
+            mes,
+            dia)
+        datepicker.show()
     }
 }

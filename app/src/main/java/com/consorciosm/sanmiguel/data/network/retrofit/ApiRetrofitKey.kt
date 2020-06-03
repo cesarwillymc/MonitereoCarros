@@ -5,7 +5,6 @@ import com.consorciosm.sanmiguel.data.model.*
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -104,7 +103,9 @@ interface ApiRetrofitKey {
 
     @GET("admin/recorrido/{id}")
     suspend fun getRecorridoChofer(
-        @Path("id") id:String
+        @Path("id") id: String,
+        @Query("inicio")inicio: String,
+        @Query("final")final: String
     ):Response<RutaProgramada>
     //Get Partes
     @GET("admin/listParte")

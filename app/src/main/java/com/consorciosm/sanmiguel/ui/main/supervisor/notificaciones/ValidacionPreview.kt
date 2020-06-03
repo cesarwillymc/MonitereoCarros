@@ -60,7 +60,7 @@ class ValidacionPreview : BaseFragment(),KodeinAware {
             validarPrograma()
         }
         fvp_descargar.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${Constants.BASE_URL_AMAZON_S3}sanmiguel/ordenProgramada/$id.pdf")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${Constants.BASE_URL_AMAZON_S3}sanMiguel/ordenes/$id.pdf")))
         }
     }
 

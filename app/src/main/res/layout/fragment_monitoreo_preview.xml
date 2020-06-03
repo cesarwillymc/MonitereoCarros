@@ -19,14 +19,14 @@
 
             <TextView
                 android:id="@+id/fmp_txt_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Cesar Willy"
                 android:textColor="#000"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -35,15 +35,13 @@
                 android:id="@+id/fmp_txt_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="#000"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:drawableStart="@drawable/ic_local_phone_black_24dp"
                 android:text="962601310"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline11"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="#000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fmp_txt_placa" />
 
             <TextView
                 android:id="@+id/fmp_txt_placa"
@@ -51,50 +49,53 @@
                 android:layout_height="25sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="#000"
+                android:gravity="center"
                 android:text="SSFA56"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:gravity="center"
-                android:background="#000"
-                app:layout_constraintEnd_toStartOf="@+id/fmp_txt_color"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView34" />
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintStart_toEndOf="@+id/textView34"
+                app:layout_constraintTop_toBottomOf="@+id/fmp_txt_name" />
 
             <TextView
                 android:id="@+id/fmp_txt_color"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/colorPrimary"
-                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintStart_toEndOf="@+id/fmp_txt_phone"
                 app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
             <TextView
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="Recorrido"
-                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fmp_txt_phone" />
 
             <TextView
                 android:id="@+id/fmp_txt_kilometros"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="11dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="#000"
                 android:gravity="center"
                 android:text="1526km"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline11"
-                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView26"
+                app:layout_constraintTop_toBottomOf="@+id/fmp_txt_phone" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline11"
@@ -113,6 +114,72 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fmp_txt_name" />
 
+            <EditText
+                android:id="@+id/fecha"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/border_label"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Busqueda"
+                android:inputType="textPersonName"
+                android:padding="6dp"
+                app:layout_constraintEnd_toStartOf="@+id/searchFecha"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+            <ImageButton
+                android:id="@+id/searchFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textView32"
+                app:layout_constraintTop_toBottomOf="@+id/fecha"
+                app:srcCompat="@drawable/ic_search" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Fecha Inicial"
+                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Fecha Final"
+                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toBottomOf="@+id/fecha" />
+            <EditText
+                android:id="@+id/fechaFinal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/border_label"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Busqueda"
+                android:inputType="textPersonName"
+                android:padding="6dp"
+                app:layout_constraintEnd_toStartOf="@+id/searchFecha"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toBottomOf="@+id/textView32" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <fragment
             android:id="@+id/map"
