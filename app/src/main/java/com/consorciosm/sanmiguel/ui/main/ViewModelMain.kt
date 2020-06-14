@@ -42,7 +42,16 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
-
+    fun createNotificacionSupervisor(ordenProgramada:Notificacion):LiveData<Resource<Unit>> = liveData {
+        Log.e("Datos Enviados",ordenProgramada.toString())
+        emit(Resource.Loading())
+        try{
+            repo.createNotificacionSupervisor(ordenProgramada)
+            emit(Resource.Success(Unit))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
     fun createNotificacion(ordenProgramada:Notificacion):LiveData<Resource<Unit>> = liveData {
         Log.e("Datos Enviados",ordenProgramada.toString())
         emit(Resource.Loading())
@@ -72,12 +81,19 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
 
     fun deleteUser()= repo.deleteUser()
     fun updateUserDB(item: Usuario)=repo.updateUserAppDb(item)
-    fun createPersonal(personal:PersonalData):LiveData<Resource<Unit>> = liveData {
+    fun createPersonal(
+        personal: PersonalData,
+        file: File,
+        name: String
+    ):LiveData<Resource<Unit>> = liveData {
         emit(Resource.Loading())
         try{
+            val nameFile = RequestBody.create(MediaType.parse("text/plain"),name )
+            val archivo=guardarFotoEnArchivo(name,file)
             val dato=repo.createPersonal(personal)
             Log.e("crear",dato.message)
             repo.CreateContadorNotifyUser(dato.message)
+            repo.updatePhotoLicencia(archivo!!,nameFile,dato.message)
             emit(Resource.Success(Unit))
         }catch (e:Exception){
             emit(Resource.Failure(e) )
@@ -116,6 +132,17 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
+    fun updatePhotoLicencia(file: File,name:String,id:String):LiveData<Resource<Unit>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val nameFile = RequestBody.create(MediaType.parse("text/plain"),name )
+            val archivo=guardarFotoEnArchivo(name,file)
+            repo.updatePhotoLicencia(archivo!!,nameFile,id)
+            emit(Resource.Success(Unit))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
     fun updateVehiculo(vehiculo: VehiculoCreate,id:String):LiveData<Resource<Unit>> = liveData {
         emit(Resource.Loading())
         try{
@@ -142,6 +169,15 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
         emit(Resource.Loading())
         try{
             val dato=repo.getListUser(value)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    fun getListAdmin():LiveData<Resource<List<UsuarioList>>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getListAdmin()
             emit(Resource.Success(dato))
         }catch (e:Exception){
             emit(Resource.Failure(e) )
@@ -235,6 +271,15 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
+    fun getListNotificacionesSupervisorSMS(pagina:Int):LiveData<Resource<List<NotificacionesList>>> = liveData {
+        emit(Resource.Loading())
+        try{
+            val dato=repo.getListNotificacionesSupervisorSMS(pagina)
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
     fun getListNotificaciones(pagina:Int):LiveData<Resource<List<NotificacionesList>>> = liveData {
         emit(Resource.Loading())
         try{
@@ -254,10 +299,10 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
         }
     }
 
-    fun validateOrden(id:String):LiveData<Resource<ResponseGeneral>> = liveData {
+    fun validateOrden(id: String, b: Boolean):LiveData<Resource<ResponseGeneral>> = liveData {
         emit(Resource.Loading())
         try{
-            val dato=repo.validateOrden(id)
+            val dato=repo.validateOrden(id,b)
             repo.IncrementValueNotificationConductor(dato.message)
             repo.DecrementValueNotification()
             emit(Resource.Success(dato))
@@ -265,6 +310,17 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
             emit(Resource.Failure(e) )
         }
     }
+//    fun rechazarOrden(id:String):LiveData<Resource<ResponseGeneral>> = liveData {
+//        emit(Resource.Loading())
+//        try{
+//            val dato=repo.rechazarOrden(id)
+//            repo.IncrementValueNotificationConductor(dato.message)
+//            repo.DecrementValueNotification()
+//            emit(Resource.Success(dato))
+//        }catch (e:Exception){
+//            emit(Resource.Failure(e) )
+//        }
+//    }
     fun getNotificationById(id:String):LiveData<Resource<OrdenProgramada>> = liveData {
         emit(Resource.Loading())
         try{
@@ -288,6 +344,15 @@ class ViewModelMain(private val repo: MainRepository) :ViewModel(){
         emit(Resource.Loading())
         try{
             val dato=repo.getConductoresSinOrdenes()
+            emit(Resource.Success(dato))
+        }catch (e:Exception){
+            emit(Resource.Failure(e) )
+        }
+    }
+    fun OrdenesDefaultretrofit():LiveData<Resource<OrdenesDefault>>  = liveData (Dispatchers.IO){
+        emit(Resource.Loading())
+        try{
+            val dato=repo.OrdenesDefaultretrofit()
             emit(Resource.Success(dato))
         }catch (e:Exception){
             emit(Resource.Failure(e) )

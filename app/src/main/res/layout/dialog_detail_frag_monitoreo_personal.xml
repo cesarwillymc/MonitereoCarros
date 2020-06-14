@@ -7,19 +7,26 @@
     android:layout_height="match_parent">
 
 
-    <androidx.cardview.widget.CardView
 
-        app:cardCornerRadius="20dp"
-        app:cardElevation="1dp"
-        android:layout_marginHorizontal="40dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        >
-
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <include
+            layout="@layout/progressbar_login"
+            android:id="@+id/login_progressbar"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
@@ -27,6 +34,7 @@
 
             <androidx.cardview.widget.CardView
 
+                android:id="@+id/cardView2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="5dp"
@@ -48,19 +56,19 @@
 
             <LinearLayout
                 android:id="@+id/llConductor"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:gravity="end"
-                    android:layout_weight="2"
-                    android:text="Conductor:"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:text="Conductor:" />
 
                 <TextView
                     android:id="@+id/lbl_conductor_dialog_detail"
@@ -126,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:text="GRIS"
+                    android:text=""
                     android:textColor="@android:color/black" />
 
 
@@ -188,6 +196,18 @@
 
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/recorrido"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Ver recorrido"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -33,6 +33,9 @@
             android:name="id"
             android:defaultValue="sad"
             app:argType="string" />
+        <action
+            android:id="@+id/action_registro_vehiculo_to_monitoreoPreview"
+            app:destination="@id/monitoreoPreview" />
     </fragment>
 
     <fragment
@@ -50,8 +53,8 @@
         android:label="Monitorea tu personal"
         tools:layout="@layout/fragment_monitoreo_personal">
         <action
-            android:id="@+id/action_nav_personal_to_monitoreoPreview"
-            app:destination="@id/monitoreoPreview" />
+            android:id="@+id/action_nav_personal_to_dialog_info_conductor"
+            app:destination="@id/dialog_info_conductor" />
     </fragment>
     <fragment
         android:id="@+id/ordenes"
@@ -154,4 +157,22 @@
         android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.perfil.SendNotify"
         android:label="Enviar notificacion"
         tools:layout="@layout/fragment_send_notify" />
+    <dialog
+        android:id="@+id/dialog_info_conductor"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo.Dialog_info_conductor"
+        android:label="Dialog_info_conductor" >
+        <action
+            android:id="@+id/action_dialog_info_conductor_to_monitoreoPreview"
+            app:destination="@id/monitoreoPreview" />
+        <argument
+            android:name="id"
+            app:argType="com.consorciosm.sanmiguel.data.model.PuntosFirebase" />
+    </dialog>
+    <fragment
+        android:id="@+id/nav_notifys"
+        android:name="com.consorciosm.sanmiguel.ui.main.admin.ui.notify.NotificationsFragment" >
+        <action
+            android:id="@+id/action_nav_notifys_to_ordenes"
+            app:destination="@id/ordenes" />
+    </fragment>
 </navigation>

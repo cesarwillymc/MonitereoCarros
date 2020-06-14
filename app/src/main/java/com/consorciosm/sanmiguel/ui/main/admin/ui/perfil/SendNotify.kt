@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseFragment
+import com.consorciosm.sanmiguel.common.constans.Constants
 import com.consorciosm.sanmiguel.common.constans.Constants.PREF_ID_USER
 import com.consorciosm.sanmiguel.common.shared.SharedPreferencsManager.Companion.getSomeStringValue
 import com.consorciosm.sanmiguel.common.utils.Resource
@@ -20,6 +21,7 @@ import com.consorciosm.sanmiguel.data.model.UsuarioList
 import com.consorciosm.sanmiguel.ui.main.MainViewModelFactory
 import com.consorciosm.sanmiguel.ui.main.ViewModelMain
 import kotlinx.android.synthetic.main.fragment_send_notify.*
+import kotlinx.android.synthetic.main.fragment_validate_user.*
 
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -36,12 +38,27 @@ class SendNotify : BaseFragment(), KodeinAware {
     var idConductor =""
     var listaUsuarios = mutableListOf<UsuarioList>()
     var  datos: ArrayAdapter<String>?=null
+    var rolAdmin=false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= requireActivity().run {
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
-        cargarSpinner()
+        viewModel.getLoggetUser.observe(viewLifecycleOwner, Observer {
+            if(it!=null){
+                when(it.role) {
+                    Constants.ROLE_SUPERVISOR ->{
+                        rolAdmin=false
+                        cargarAdmin()
+
+                    }
+                    Constants.ROLE_ADMINISTRADOR ->{
+                        rolAdmin=true
+                        cargarSpinner()
+                    }
+                }
+            }
+        })
         spinnerDestinatario.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -61,7 +78,12 @@ class SendNotify : BaseFragment(), KodeinAware {
         }
         sendNotify.setOnClickListener {
             if (comprobarDatos()){
-                sendValue()
+                if(rolAdmin){
+                    sendValue()
+                }else{
+                    sendValueSupervisor()
+                }
+
             }
         }
     }
@@ -71,6 +93,28 @@ class SendNotify : BaseFragment(), KodeinAware {
         val message= MensajeLbl.text.toString().trim()
         val nombres= spinnerDestinatario.selectedItem.toString()
         viewModel.createNotificacion(Notificacion(idConductor,nombres,getSomeStringValue(PREF_ID_USER)!!,message,asunto)).observe(viewLifecycleOwner,
+            Observer {
+                when (it) {
+                    is Resource.Loading -> {
+                        login_progressbar.visibility = View.VISIBLE
+                    }
+                    is Resource.Success -> {
+                        login_progressbar.visibility = View.GONE
+                        snakBar("Mensaje enviado correctamente")
+                    }
+                    is Resource.Failure -> {
+                        Log.e("error",it.exception.message!!)
+                        login_progressbar.visibility = View.GONE
+                        snakBar(it.exception.message!!)
+                    }
+                }
+            })
+    }
+    private fun sendValueSupervisor() {
+        val asunto= AsuntoLbl.text.toString().trim()
+        val message= MensajeLbl.text.toString().trim()
+        val nombres= spinnerDestinatario.selectedItem.toString()
+        viewModel.createNotificacionSupervisor(Notificacion(idConductor,nombres,getSomeStringValue(PREF_ID_USER)!!,message,asunto)).observe(viewLifecycleOwner,
             Observer {
                 when (it) {
                     is Resource.Loading -> {
@@ -104,7 +148,41 @@ class SendNotify : BaseFragment(), KodeinAware {
         }
         return true
     }
+    private fun cargarAdmin(){
+        viewModel.getListAdmin().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    snakBar("Cargando Administradores")
+                    login_progressbar.visibility = View.VISIBLE
+                }
+                is Resource.Success -> {
+                    try {
+                        val varible = mutableListOf<String>()
+                        listaUsuarios.addAll(it.data)
 
+                        for (dato in it.data) {
+                            varible.add("${dato.nombres?:"null"} ${dato.apellidos?:"null"} ")
+                        }
+                        datos = ArrayAdapter(
+                            requireContext(), // Context
+                            android.R.layout.simple_spinner_item, // Layout
+                            varible// Array
+                        )
+                        datos!!.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+                        spinnerDestinatario.adapter = datos
+                        login_progressbar.visibility = View.GONE
+                    }catch (e:Exception){
+                        Log.e("error","${e.message}")
+                    }
+                    Log.e("datos",it.data.toString())
+                }
+                is Resource.Failure -> {
+                    snakBar(it.exception.message!!)
+                    login_progressbar.visibility = View.GONE
+                }
+            }
+        })
+    }
     private fun cargarSpinner() {
         viewModel.getListUser(null).observe(viewLifecycleOwner, Observer {
             when (it) {

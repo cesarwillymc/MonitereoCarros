@@ -24,6 +24,11 @@ interface ApiRetrofitKey {
         @Body orden: Notificacion,
         @Path("id") id :String
     ): Response<ResponseGeneral>
+    @POST("supervisor/sendMenssage/{id}")
+    suspend fun createNotificacionSupervisor(
+        @Body orden: Notificacion,
+        @Path("id") id :String
+    ): Response<ResponseGeneral>
 
 
 
@@ -65,6 +70,13 @@ interface ApiRetrofitKey {
         @Path("carId") carId:String?
     ): Response<ResponseGeneral>
     @Multipart
+    @PUT("admin/userLicence/{carId}")
+    suspend fun createPhotoLicenciaUser(
+        @Part file: MultipartBody.Part,
+        @Part("userLicence") name: RequestBody,
+        @Path("carId") carId:String?
+    ): Response<ResponseGeneral>
+    @Multipart
     @PUT("service/setServiceImg")
     suspend fun updatePhotoVehiculo(
         @Part file: MultipartBody.Part,
@@ -93,9 +105,15 @@ interface ApiRetrofitKey {
     suspend fun getListUser(
         @Query("vehiculo") vehiculo:Boolean?=null
     ):Response<List<UsuarioList>>
+    @GET("supervisor/listAdmin")
+    suspend fun getListAdmin(
+    ):Response<List<UsuarioList>>
     @GET("admin/listChoferByPlaca")
     suspend fun getConductoresSinOrdenes(
     ):Response<List<ConductoresSinOrdenes>>
+    @GET("admin/parteInfo")
+    suspend fun OrdenesDefaultretrofit(
+    ):Response<OrdenesDefault>
     @GET("admin/userinfo/{id}")
     suspend fun getUserId(
         @Path("id") id:String
@@ -130,7 +148,10 @@ interface ApiRetrofitKey {
     suspend fun getListNotificaciones(
         @Query("pagina") pagina:Int
     ):Response<List<NotificacionesList>>
-
+    @GET("admin/getListMensajes")
+    suspend fun     getListNotificacionesSupervisorSMS(
+        @Query("pagina") pagina:Int
+    ):Response<List<NotificacionesList>>
     @GET("admin/orden/{id}")
     suspend fun getListNotificacionesById(
         @Path("id") id:String
@@ -146,7 +167,8 @@ interface ApiRetrofitKey {
     ):Response<OrdenProgramada>
     @POST("supervisor/valideOrden/{id}")
     suspend fun validateOrden(
-        @Path("id") id:String
+        @Path("id") id:String,
+        @Query("isAproved") aproved:Boolean
     ):Response<ResponseGeneral>
 
 

@@ -50,7 +50,7 @@ class InicioMain : BaseActivity(), KodeinAware, AppBarConfiguration.OnNavigateUp
         navController = findNavController(R.id.nav_host_supervisor)
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.nav_registro, R.id.nav_registro_vehiculo, R.id.nav_partes,R.id.nav_ordenes,
-            R.id.nav_personal ,R.id.nav_perfil
+            R.id.nav_personal ,R.id.nav_perfil,R.id.nav_notifys
         ) , drawer_layout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navview.setupWithNavController(navController)

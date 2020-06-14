@@ -24,6 +24,10 @@
             android:icon="@drawable/ic_monitoreo"
             android:title="Monitoreo Personal" />
         <item
+            android:id="@+id/nav_notifys"
+            android:icon="@drawable/ic_contact"
+            android:title="Alertas" />
+        <item
             android:id="@+id/nav_perfil"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="Mi perfil" />

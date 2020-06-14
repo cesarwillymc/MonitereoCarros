@@ -3,11 +3,16 @@ package com.consorciosm.sanmiguel.ui.main.admin.ui.monitoreo
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -23,8 +28,12 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_monitoreo_personal.*
+import org.jetbrains.anko.backgroundColor
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -54,7 +63,8 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
         }
         googleMap.setOnMarkerClickListener {
             Toast.makeText(activity, "Marker Clicked", Toast.LENGTH_SHORT).show()
-            val dato=MonitoreoPersonalDirections.actionNavPersonalToMonitoreoPreview(it!!.tag.toString())
+            val puntosFirebase:PuntosFirebase= it!!.tag as PuntosFirebase
+            val dato=MonitoreoPersonalDirections.actionNavPersonalToDialogInfoConductor(puntosFirebase)
             findNavController().navigate(dato)
 
             false
@@ -112,11 +122,10 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
                  val marker=googleMap.addMarker(
                      MarkerOptions()
                          .position(LatLng(values.latitude, values.longitude))
-                         .title(values.placa)
-                         .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_moto))
+                         .icon(getBitmapFromView("${values.placa} \n ${values.state}",values.color))
                  )
-                 marker.tag=values.id
-                 marker.showInfoWindow()
+                 marker.tag=values
+//                 marker.showInfoWindow()
              }
 
          }catch (e:Exception){
@@ -149,5 +158,38 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
         }
     }
 
+    fun getBitmapFromView(title: String?,color:Int): BitmapDescriptor? {
+        val  vista = LayoutInflater.from(requireActivity().applicationContext).inflate(R.layout.marker_tools, null)!!
+        vista.findViewById<TextView>(R.id.tooltips_title).text= title
+        vista.findViewById<TextView>(R.id.tooltips_title).backgroundColor= color
+        vista.findViewById<ImageView>(R.id.tooltips_img).setImageDrawable(requireContext().getDrawable(R.drawable.coche))
 
+        val width = vista.resources.getDimensionPixelSize(R.dimen.tooltips_width)
+        val height = vista.resources.getDimensionPixelSize(R.dimen.tooltips_height)
+        val measuredWidth = View.MeasureSpec.makeMeasureSpec(
+            width,
+            View.MeasureSpec.EXACTLY
+        )
+        val measuredHeight = View.MeasureSpec.makeMeasureSpec(
+            height,
+            View.MeasureSpec.EXACTLY
+        )
+        vista.measure(measuredWidth, measuredHeight)
+        vista.layout(0, 0, vista.measuredWidth, vista.measuredHeight)
+
+        //Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+
+        vista.draw(canvas)
+//        val bitmap =   BitmapFactory.decodeResource(
+//            requireContext().resources,
+//            R.drawable.coche
+//        )
+//        val workingBitmap = Bitmap.createBitmap(bitmap)
+//        val mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true)
+//        val canvas = Canvas(mutableBitmap)
+//        vista.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap (bitmap)
+    }
 }

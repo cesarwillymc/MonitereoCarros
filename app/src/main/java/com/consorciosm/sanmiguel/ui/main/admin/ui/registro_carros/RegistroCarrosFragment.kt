@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseFragment
@@ -68,9 +69,11 @@ class RegistroCarrosFragment : BaseFragment(), KodeinAware {
         id = RegistroCarrosFragmentArgs.fromBundle(requireArguments()).id
 
         if (!new) {
+            btn_recorrido_frc.visibility= View.VISIBLE
             btn_registrar_frc.text = "Actualizar datos!!!"
             getData()
         }else{
+            btn_recorrido_frc.visibility= View.GONE
             cargarSpinner()
         }
 
@@ -115,6 +118,10 @@ class RegistroCarrosFragment : BaseFragment(), KodeinAware {
 
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
+        }
+        btn_recorrido_frc.setOnClickListener {
+            val nav = RegistroCarrosFragmentDirections.actionRegistroVehiculoToMonitoreoPreview(idConductor)
+            findNavController().navigate(nav)
         }
         btn_registrar_frc.setOnClickListener {
             if (comprobarDatos()) {

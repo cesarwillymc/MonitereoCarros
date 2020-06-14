@@ -6,7 +6,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,7 +19,6 @@ import com.consorciosm.sanmiguel.common.utils.Resource
 import com.consorciosm.sanmiguel.data.model.RutaProgramada
 import com.consorciosm.sanmiguel.ui.main.MainViewModelFactory
 import com.consorciosm.sanmiguel.ui.main.ViewModelMain
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -33,6 +31,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import java.util.*
+
 
 class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetListener  {
     override val kodein: Kodein by kodein()
@@ -120,7 +119,12 @@ class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetL
         }
         setDataFindView(listaPuntos,inicio,final)
     }
-
+    private val PATTERN_DASH_LENGTH_PX = 20
+    private val PATTERN_GAP_LENGTH_PX = 20
+    private val DOT: PatternItem = Dot()
+    private val DASH: PatternItem = Dash(PATTERN_DASH_LENGTH_PX.toFloat())
+    private val GAP: PatternItem = Gap(PATTERN_GAP_LENGTH_PX.toFloat())
+    private  val PATTERN_POLYGON_ALPHA = listOf(GAP, DASH)
     private fun setDataFindView(
         data: List<LatLng>,
         inicio: LatLng,
@@ -129,11 +133,11 @@ class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetL
 
         try{
             googleMap.addMarker(
-                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_person_pin))
+                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(), R.drawable.termino))
                     .title("Destino")
                     .position(final))
             googleMap!!.addMarker(
-                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_person_pin))
+                MarkerOptions().icon(bitmapDescriptorFromVector(requireContext(),R.drawable.inicio))
                     .title("Origen")
                     .position(inicio ))
             try {
@@ -148,7 +152,8 @@ class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetL
             var lineOptions: PolylineOptions? = PolylineOptions()
             lineOptions!!.addAll(data)
             lineOptions.width(10f)
-            lineOptions.color(Color.BLACK)
+            lineOptions.color(Color.MAGENTA)
+            lineOptions.pattern(PATTERN_POLYGON_ALPHA)
             lineOptions.geodesic(true)
             currentPoline=googleMap!!.addPolyline(lineOptions)
         }catch (e:Exception){

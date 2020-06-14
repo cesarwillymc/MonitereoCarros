@@ -5,9 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.consorciosm.sanmiguel.R
@@ -37,8 +35,11 @@ class ValidacionPreview : BaseFragment(),KodeinAware {
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
         id= ValidacionPreviewArgs.fromBundle(requireArguments()).id
-        if (ValidacionPreviewArgs.fromBundle(requireArguments()).isValid)
+        if (ValidacionPreviewArgs.fromBundle(requireArguments()).isValid){
             fvp_descargar.visibility=View.VISIBLE
+            btn_rechazar_fnd.visibility=View.GONE
+        }
+
         viewModel.getNotificationByIdSupervisor(id).observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{
@@ -62,10 +63,30 @@ class ValidacionPreview : BaseFragment(),KodeinAware {
         fvp_descargar.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${Constants.BASE_URL_AMAZON_S3}sanMiguel/ordenes/$id.pdf")))
         }
+        btn_rechazar_fnd.setOnClickListener {
+            rechazarPrograma()
+        }
     }
-
+    private fun rechazarPrograma(){
+        viewModel.validateOrden(id,false).observe(viewLifecycleOwner, Observer {
+            when(it){
+                is Resource.Loading->{
+                    login_progressbar.visibility= View.VISIBLE
+                }
+                is Resource.Success->{
+                    snakBar(" Rechazado correctamente Correctamente")
+                    login_progressbar.visibility= View.GONE
+                }
+                is Resource.Failure->{
+                    snakBar(" ${it.exception.message}")
+                    Log.e("error", it.exception.message)
+                    login_progressbar.visibility= View.GONE
+                }
+            }
+        })
+    }
     private fun validarPrograma() {
-        viewModel.validateOrden(id).observe(viewLifecycleOwner, Observer {
+        viewModel.validateOrden(id,true).observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{
                     login_progressbar.visibility= View.VISIBLE

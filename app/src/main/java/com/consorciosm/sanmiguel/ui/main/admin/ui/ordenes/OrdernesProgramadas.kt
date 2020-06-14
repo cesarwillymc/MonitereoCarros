@@ -71,6 +71,7 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
                 fps_descargar.visibility= View.VISIBLE
             }
         }else{
+            cargarDatosEditables()
             cargarSpinner()
 //            viewModel.getLoggetUser.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 //                lbl_order_autorizadoa.setText("${it.nombres} ${it.apellidos}")
@@ -105,7 +106,7 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
             }
         }
         fps_descargar.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${BASE_URL_AMAZON_S3}sanMiguel/ordenes/$id.pdf")))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${BASE_URL_AMAZON_S3}sanMiguel/ordenes/$id.pdf")))
         }
         lbl_order_fechasalida.setOnClickListener {
             tipe="salida"
@@ -123,6 +124,29 @@ class OrdernesProgramadas : BaseFragment(), KodeinAware , TimePickerDialog.OnTim
             tipe="fecha"
             showDialogPicker()
         }
+    }
+
+    private fun cargarDatosEditables() {
+        viewModel.OrdenesDefaultretrofit().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    login_progressbar.visibility=View.VISIBLE
+                }
+                is Resource.Success -> {
+                    lbl_order_formulario.setText(it.data.formulario)
+                    lbl_order_aprobado.text = it.data.aprovado
+                    lbl_order_codigo.setText(it.data.codigo)
+                    lbl_order_proyecto.setText(it.data.proyecto)
+                    lbl_order_version.setText(it.data.version)
+                        login_progressbar.visibility = View.GONE
+
+                }
+                is Resource.Failure -> {
+                    Log.e("error",it.exception.message!!)
+                    snakBar(it.exception.message!!)
+                }
+            }
+        })
     }
 
     private fun cargarSpinner() {

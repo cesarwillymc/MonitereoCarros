@@ -21,6 +21,7 @@ class MainRepository (
 
     suspend fun createOrdenProgramada(ordenProgramada: OrdenProgramada)= apiRequest { api.createOrdenProgramada(ordenProgramada) }
     suspend fun createNotificacion(ordenProgramada: Notificacion)= apiRequest { api.createNotificacion(ordenProgramada,ordenProgramada._idDestinatario) }
+    suspend fun createNotificacionSupervisor(ordenProgramada: Notificacion)= apiRequest { api.createNotificacionSupervisor(ordenProgramada,ordenProgramada._idDestinatario) }
     suspend fun updateOrdenProgramada(ordenProgramada: OrdenProgramada,id:String)= apiRequest { api.updateOrdenProgramada(ordenProgramada,id) }
 
     fun deleteUser()= db.usuarioDao().deleteUsuario()
@@ -32,9 +33,14 @@ class MainRepository (
     suspend fun updatePhotoRest(file: MultipartBody.Part, name: RequestBody, key:String?=null): ResponseGeneral {
         return apiRequest { api.createPhotoVehiculo(file,name,key) }
     }
+    suspend fun updatePhotoLicencia(file: MultipartBody.Part, name: RequestBody, key:String?=null): ResponseGeneral {
+        return apiRequest { api.createPhotoLicenciaUser(file,name,key) }
+    }
     suspend fun updateVehiculo(vehiculo: VehiculoCreate,id:String)=apiRequest { api.updateVehiculo(vehiculo,id) }
     suspend fun getListUser(value:Boolean?)= apiRequest { api.getListUser(value) }
+    suspend fun getListAdmin()= apiRequest { api.getListAdmin() }
     suspend fun getConductoresSinOrdenes()= apiRequest { api.getConductoresSinOrdenes() }
+    suspend fun OrdenesDefaultretrofit()= apiRequest { api.OrdenesDefaultretrofit() }
     suspend fun getListPartes(hora:String?=null,fecha:String)= apiRequest { api.getListPartes(fecha,hora) }
     suspend fun getParteId(id:String)= apiRequest { api.getParteId(id) }
     suspend fun validarParte(id:String)= apiRequest { api.validarParte(id) }
@@ -48,11 +54,12 @@ class MainRepository (
     )= apiRequest { api.getRecorridoChofer(value,inicio,final) }
 //    suspend fun getStringPoline( url:String) = apiRequest { api.callMaps(url) }.routes
     suspend fun getListNotificaciones(pagina:Int)= apiRequest { api.getListNotificaciones(pagina) }
+    suspend fun getListNotificacionesSupervisorSMS(pagina:Int)= apiRequest { api.getListNotificacionesSupervisorSMS(pagina) }
     suspend fun getListNotificacionesSupervisor(pagina:Int)= apiRequest { api.getListNotificacionesSupervisor(pagina) }
 
     suspend fun getListNotificacionesById(id:String)= apiRequest { api.getListNotificacionesById(id) }
     suspend fun getNotificationByIdSupervisor(id:String)= apiRequest { api.getNotificationByIdSupervisor(id) }
-    suspend fun validateOrden(id:String)= apiRequest { api.validateOrden(id) }
+    suspend fun validateOrden(id: String, b: Boolean)= apiRequest { api.validateOrden(id,b) }
 
     suspend fun getPositionsConductores(): Flow<Resource<List<PuntosFirebase>>> = callbackFlow {
         val conexion=firebase.collection("vehiculos").whereEqualTo("state",true).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
