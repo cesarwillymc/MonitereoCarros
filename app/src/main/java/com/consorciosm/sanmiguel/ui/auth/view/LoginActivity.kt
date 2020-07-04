@@ -2,6 +2,7 @@ package com.consorciosm.sanmiguel.ui.auth.view
 
 
 
+import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,11 @@ import com.consorciosm.sanmiguel.ui.auth.AuthViewModelFactory
 import com.consorciosm.sanmiguel.ui.main.admin.InicioMain
 import com.consorciosm.sanmiguel.ui.main.supervisor.SupervisorActivity
 import com.consorciosm.sanmiguel.ui.main.supervisor.validateAccount.ValidateUser
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_login.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -37,6 +43,31 @@ class LoginActivity : BaseActivity(), KodeinAware {
         viewModel= run {
             ViewModelProvider(this,factory).get(AuthViewModel::class.java)
         }
+        Dexter.withContext(this).withPermissions(
+            listOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        ).withListener(object : MultiplePermissionsListener {
+            override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
+                p0?.let {
+                    if(p0.areAllPermissionsGranted()){
+                        toast("Permisos Aceptados")
+                    }
+                }
+            }
+
+            override fun onPermissionRationaleShouldBeShown(
+                p0: MutableList<PermissionRequest>?,
+                p1: PermissionToken?
+            ) {
+                p1!!.continuePermissionRequest()
+            }
+
+        }).check()
         al_btn_signin.setOnClickListener {
             val email= al_edtxt_gmail.text.toString().trim()
             val pass= al_edtxt_pass.text.toString().trim()

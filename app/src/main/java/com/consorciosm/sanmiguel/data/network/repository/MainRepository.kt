@@ -1,5 +1,6 @@
 package com.consorciosm.sanmiguel.data.network.repository
 
+import android.util.Log
 import com.consorciosm.sanmiguel.common.utils.Resource
 import com.consorciosm.sanmiguel.common.utils.SafeApiRequest
 import com.consorciosm.sanmiguel.data.local.db.AppDB
@@ -68,6 +69,7 @@ class MainRepository (
 
                 offer(Resource.Success(dato))
             }else{
+                Log.e("datos",firebaseFirestoreException.toString())
                 channel.close(Exception("Error al traer datos, revisa tu conexion"))
             }
         }
@@ -75,8 +77,8 @@ class MainRepository (
     }
     suspend fun obtenerNotificacionesCantidad(): Flow<Int> = callbackFlow {
         val conexion=firebase.collection("notify").document("supervisor").addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
-            if (firebaseFirestoreException==null){
-                val dato=documentSnapshot!!.getLong("cantidad")!!.toInt()
+            if (documentSnapshot!=null){
+                val dato=documentSnapshot.getLong("cantidad")!!.toInt()
                 offer(dato)
             }else{
                 channel.close(Exception("Error al traer datos, revisa tu conexion"))

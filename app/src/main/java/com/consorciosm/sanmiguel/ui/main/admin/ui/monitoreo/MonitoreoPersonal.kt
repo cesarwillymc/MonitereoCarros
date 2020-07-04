@@ -49,6 +49,7 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
     private lateinit var viewModel: ViewModelMain
     private val factory: MainViewModelFactory by instance()
     private lateinit var googleMap: GoogleMap
+    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         this.googleMap=googleMap
         googleMap!!.isMyLocationEnabled=true

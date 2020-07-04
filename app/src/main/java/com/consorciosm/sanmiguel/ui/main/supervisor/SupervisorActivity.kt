@@ -1,8 +1,13 @@
 package com.consorciosm.sanmiguel.ui.main.supervisor
 
 import android.Manifest
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.widget.TextView
+import androidx.core.view.MenuItemCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -18,12 +23,12 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_supervisor.*
-import kotlinx.android.synthetic.main.app_bar_inicio_main.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import  com.consorciosm.sanmiguel.R
+import kotlinx.android.synthetic.main.app_bar_inicio_main.*
 
 class SupervisorActivity : BaseActivity(),KodeinAware, AppBarConfiguration.OnNavigateUpListener{
     override val kodein: Kodein by kodein()
@@ -41,8 +46,9 @@ class SupervisorActivity : BaseActivity(),KodeinAware, AppBarConfiguration.OnNav
 //        setInfoUser(headerView)
         navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_personal, R.id.nav_validacion,R.id.nav_perfil
-        ) )
+            R.id.nav_registro, R.id.nav_registro_vehiculo, R.id.nav_partes,R.id.nav_ordenes,
+            R.id.nav_personal ,R.id.nav_perfil,R.id.nav_notifys,R.id.nav_validacion
+        ) , drawer_layout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         nav_view.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
@@ -56,31 +62,37 @@ class SupervisorActivity : BaseActivity(),KodeinAware, AppBarConfiguration.OnNav
                 )
             ).withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
+                    p0?.let {
+                        if(p0.areAllPermissionsGranted()){
 
+                        }
+                    }
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
                     p0: MutableList<PermissionRequest>?,
                     p1: PermissionToken?
                 ) {
-
+                    p1!!.continuePermissionRequest()
                 }
 
             }).check()
         }
-        val badge = nav_view.getOrCreateBadge(nav_view.menu.findItem(R.id.nav_validacion).itemId )
-        badge.isVisible = true
-        badge.number=0
+
+
+        val badge =   MenuItemCompat.getActionView(
+            nav_view.menu.findItem(R.id.nav_validacion)
+        ) as TextView
+
+        badge.gravity = Gravity.CENTER_VERTICAL
+        badge.setTypeface(null, Typeface.BOLD)
         viewModel.obtenerNotificacionesCantidad.observe(this, Observer {
-            badge.number = it
+            Log.e("datos","$it")
+            badge.text = it.toString()
         })
 
     }
 
-
-    private fun setInfoUser(headerView: View?) {
-
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

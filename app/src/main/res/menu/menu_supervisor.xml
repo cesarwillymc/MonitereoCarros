@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_registro"
+            android:icon="@drawable/ic_supervisor"
+            android:title="Usuarios" />
+        <item
+            android:id="@+id/nav_registro_vehiculo"
+            android:icon="@drawable/ic_car"
+            android:title="Vehiculos" />
+        <item
+            android:id="@+id/nav_partes"
+            android:icon="@drawable/ic_event"
+            android:title="Partes diarios" />
+        <item
+            android:id="@+id/nav_ordenes"
+            android:icon="@drawable/ic_transfer"
+            android:title="Ordenes Programadas" />
+        <item
             android:id="@+id/nav_personal"
             android:icon="@drawable/ic_monitoreo"
-            android:title="Monitoreo " />
+            android:title="Monitoreo Personal" />
+        <item
+            android:id="@+id/nav_notifys"
+            android:icon="@drawable/ic_contact"
+            android:title="Alertas" />
         <item
             android:id="@+id/nav_validacion"
+            app:actionViewClass="android.widget.TextView"
+            android:actionLayout="@layout/menu_counter"
             android:icon="@drawable/ic_check"
             android:title="Validacion " />
         <item
