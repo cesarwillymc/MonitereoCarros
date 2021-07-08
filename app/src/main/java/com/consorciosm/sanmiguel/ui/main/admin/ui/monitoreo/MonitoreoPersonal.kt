@@ -52,6 +52,7 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         this.googleMap=googleMap
+        googleMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
         googleMap!!.isMyLocationEnabled=true
 //        googleMap.uiSettings.isMyLocationButtonEnabled=false
         moveMapCamera()

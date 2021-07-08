@@ -51,7 +51,7 @@ class MonitoreoPreview : BaseFragment(),KodeinAware, DatePickerDialog.OnDateSetL
         this.googleMap=googleMap
         requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
         googleMap!!.isMyLocationEnabled=true
-        googleMap!!.setMapType(GoogleMap.MAP_TYPE_SATELLITE)
+        googleMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
         googleMap.uiSettings.isMyLocationButtonEnabled=false
         moveMapCamera()
     }
