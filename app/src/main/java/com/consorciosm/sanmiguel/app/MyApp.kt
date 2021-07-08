@@ -1,13 +1,9 @@
 package com.consorciosm.sanmiguel.app
 
-import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
-import android.util.Log
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ProcessLifecycleOwner
+import com.bugsnag.android.Bugsnag
 import com.consorciosm.sanmiguel.data.local.db.AppDB
 import com.consorciosm.sanmiguel.data.network.repository.AuthRepository
 import com.consorciosm.sanmiguel.data.network.repository.MainRepository
@@ -60,29 +56,7 @@ class MyApp : Application(), LifecycleObserver, KodeinAware {
     override fun onCreate() {
         super.onCreate()
         setInstance(this)
-        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+        Bugsnag.start(this)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onAppBackgrounded() { //App in background
-
-        Log.e("LifecycleObserver", "segundoPlano")
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onAppForegrounded() {
-
-        Log.e("LifecycleObserver", "primerPLANO")
-    }
-    //Verify service in backgroud
-    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
-        val manager =
-            getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
-            if (serviceClass.name == service.service.className) {
-                return true
-            }
-        }
-        return false
-    }
 }

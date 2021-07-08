@@ -2,7 +2,7 @@ package com.consorciosm.sanmiguel.common.constans
 
 object Constants {
     //Api Url
-    const val BASE_URL_API="https://api-sm-miguel.herokuapp.com/api/"
+    const val BASE_URL_API="http://194.113.74.65:4002/api/"
 //    const val BASE_URL_API="https://4338705961fd.ngrok.io/api/"
     const val BASE_URL_AMAZON_IMG="https://summit-puno.s3.us-east-2.amazonaws.com/"
     const val BASE_URL_AMAZON_S3="https://summit-puno.s3.us-east-2.amazonaws.com/"

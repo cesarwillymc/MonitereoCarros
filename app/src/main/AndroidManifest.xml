@@ -17,6 +17,10 @@
     <application
         android:name=".app.MyApp"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_sanmiguel"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_sanmiguel_round"
@@ -34,7 +38,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
+        <meta-data
+            android:name="com.bugsnag.android.API_KEY"
+            android:value="32334020fc164e37e3e82d2f9267eece"/>
         <activity android:name=".ui.main.supervisor.SupervisorActivity" />
         <activity android:name=".ui.SphashScreen">
             <intent-filter>
