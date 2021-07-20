@@ -305,8 +305,7 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-                <TextView
-                    android:background="@drawable/border_label"
+                <TextView android:background="@drawable/border_label"
                     android:textColor="#000"
                     android:id="@+id/lbl_autorizado_por_fnd"
                     android:layout_width="match_parent"
@@ -316,14 +315,14 @@
                     android:text="Autorizado Por:" />
 
                 <EditText
-                    android:hint="Llenar Autorizacion"
-                    android:background="@drawable/border_label"
-                    android:paddingVertical="10sp"
                     android:id="@+id/lbl_order_aitorizadopor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center" />
+                    android:background="@drawable/border_label"
+                    android:gravity="center"
+                    android:hint="Llenar Autorizacion"
+                    android:paddingVertical="10sp" />
 
                 <EditText
                     android:id="@+id/lbl_order_autorizadoporcargo"
@@ -343,20 +342,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingVertical="5dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline15"
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
                 app:layout_constraintTop_toBottomOf="@+id/ll_autorizado_por_fps">
 
                 <TextView
-                    android:background="@drawable/border_label"
-                    android:textColor="#000"
-                    android:gravity="center"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Autorizado A:" />
+
+                    android:background="@drawable/border_label"
+                    android:gravity="center"
+                    android:text="Autorizado A:"
+                    android:textColor="#000" />
 
                 <EditText
                     android:hint="Encargado"
@@ -366,7 +364,6 @@
                     android:layout_weight="1"
                     android:paddingVertical="10sp"
                     android:background="@drawable/border_label"
-                    android:textSize="10dp"
                     android:gravity="center" />
 
                 <EditText
@@ -374,9 +371,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:textSize="10dp"
                     android:background="@drawable/border_label"
                     android:gravity="center"
+
                     android:hint="Cargo..."
                     android:textColor="#000" />
 

@@ -18,6 +18,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.consorciosm.sanmiguel.R
 import com.consorciosm.sanmiguel.base.BaseFragment
 import com.consorciosm.sanmiguel.common.utils.Resource
@@ -28,10 +30,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import kotlinx.android.synthetic.main.fragment_monitoreo_personal.*
 import org.jetbrains.anko.backgroundColor
 import org.kodein.di.Kodein
@@ -52,8 +51,11 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         this.googleMap=googleMap
-        googleMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+        googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
         googleMap!!.isMyLocationEnabled=true
+        googleMap.uiSettings.isRotateGesturesEnabled = false
+        googleMap.setMaxZoomPreference(18f)
+        googleMap.setMinZoomPreference(5f)
 //        googleMap.uiSettings.isMyLocationButtonEnabled=false
         moveMapCamera()
         googleMap.setOnInfoWindowClickListener {
@@ -73,12 +75,63 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
         }
     }
     override fun getLayout(): Int =R.layout.fragment_monitoreo_personal
+    private var isVisibleButtonClose = false
+    private  fun  onCLickImageSetting(){
+        if(isVisibleButtonClose){
+            tipe_map_view.visibility = View.GONE
+            Glide.with(requireContext()).load(R.drawable.ic_baseline_settings_24).into(image_view_setting)
+        }else{
+            tipe_map_view.visibility = View.VISIBLE
+            Glide.with(requireContext()).load(R.drawable.ic_baseline_remove_circle_24).into(image_view_setting)
+        }
+        isVisibleButtonClose= !isVisibleButtonClose
+    }
+
+    private fun changeTypeMap(position: Int) {
+        when(position){
+            0 -> {
+                googleMap?.let{
+                    googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+                }
+            }
+            1 -> {
+                googleMap?.let{
+                    googleMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                }
+            }
+            2 ->{
+                googleMap?.let{
+                    googleMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                }
+            }
+            3 ->{
+                googleMap?.let{
+                    googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+                }
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= requireActivity().run {
             ViewModelProvider(this,factory).get(ViewModelMain::class.java)
         }
+        image_view_setting.setOnClickListener{
+            onCLickImageSetting()
+        }
+        val adapterType= TypeMaps{position ->
+            changeTypeMap(position)
+            onCLickImageSetting()
+        }
+        rv_type_maps.apply {
+            layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL,false)
+            setHasFixedSize(true)
+            isNestedScrollingEnabled=true
+            adapter = adapterType
+        }
+
+
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapa) as SupportMapFragment?
         mapFragment!!.onCreate( savedInstanceState )
         mapFragment.onResume()
@@ -144,12 +197,14 @@ class MonitoreoPersonal : BaseFragment() , KodeinAware{
         return resultBitmap
     }
     private fun moveMapCamera() {
-
-        val center = CameraUpdateFactory.newLatLng( LatLng(-15.834, -70.019))
-        val zoom = CameraUpdateFactory.zoomTo(14f)
-
+        val definedLoc =  LatLng(-10.688871, -74.4447087)
+        val cameraPosition: CameraPosition = CameraPosition.Builder().target(definedLoc).zoom(6.0f).build()
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+        /*val center = CameraUpdateFactory.newLatLng(googleMap.tar)
+        val zoom = CameraUpdateFactory.zoomTo(17f)
         googleMap.moveCamera(center)
         googleMap.animateCamera(zoom)
+        googleMap.animateCamera(zoom)*/
     }
     private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
         return ContextCompat.getDrawable(context, vectorResId)?.run {

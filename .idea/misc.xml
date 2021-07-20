@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/activity_supervisor.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_carros_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_monitoreo_personal.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_monitoreo_preview.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_ordenes_programadas_item.xml" value="0.176" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_parte_diario_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_programar_salida.xml" value="0.536" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_validacion_preview.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_validaciones_ordenes.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_validate_user.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/fragment_validate_user_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/item_spinner.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/item_spinner_dropdown.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/layout_type_map.xml" value="0.4" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/menu_counter.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/nav_header_inicio_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Willy/Documents/GitHub/MonitereoCarros/app/src/main/res/layout/progressbar_login.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
